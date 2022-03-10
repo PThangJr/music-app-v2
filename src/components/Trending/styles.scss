@@ -1,0 +1,33 @@
+.trending {
+  // min-height: 340px;
+  // padding: 15px 0;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px 0 25px 0;
+  margin-bottom: -10px;
+  overflow: hidden;
+  .slick-slide {
+    padding: 0 20px;
+  }
+
+  .trending-item {
+    // margin: 20px;
+  }
+
+  button.slick-arrow {
+    width: 50px;
+    height: 50px;
+    z-index: 5;
+    border-radius: 50%;
+
+    // @include mobile {
+    //     display: none !important;
+    // }
+
+    &::before {
+      font-size: 5rem;
+      color: rgb(138, 130, 130);
+      border-radius: 50%;
+    }
+  }
+}

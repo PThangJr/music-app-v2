@@ -1,0 +1,56 @@
+@use "../.../../../../scss/responsive" as *;
+
+.player-option {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+
+  @include mobile-tablet {
+    display: none;
+    flex: none;
+  }
+  @include desktop-sm {
+    width: 100px;
+    flex: none;
+  }
+  &-video {
+    margin-top: 1px;
+    margin-right: 10px;
+    font-size: var(--font-size-lg);
+    &.disabled {
+      cursor: not-allowed;
+      color: grey;
+      &:hover {
+        color: grey;
+      }
+    }
+    &:hover {
+      color: var(--color-purple);
+    }
+  }
+  &-volume {
+    display: flex;
+    align-items: center;
+    input {
+      width: 100px;
+    }
+    @include mobile {
+      display: none;
+    }
+    @include tablet {
+      display: none;
+    }
+    @include desktop-sm {
+      display: none;
+    }
+    span {
+      margin-right: 8px;
+      color: var(--color-white);
+    }
+  }
+  &-menu {
+    margin-left: 20px;
+    font-size: var(--font-size-hg);
+  }
+}

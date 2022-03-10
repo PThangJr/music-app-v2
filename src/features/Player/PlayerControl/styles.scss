@@ -1,0 +1,80 @@
+@use "../.../../../../scss/responsive" as *;
+
+.player-control {
+  flex: 1;
+  @include desktop-sm {
+    flex: none;
+  }
+  @include mobile-tablet {
+    flex: 1;
+  }
+  button.btn,
+  a.btn {
+    flex: 1;
+    background: none;
+    color: var(--color-white);
+    font-size: var(--font-size-hg);
+
+    &:hover {
+      @include mobile-tablet {
+        color: var(--color-white);
+      }
+      color: var(--color-purple-light);
+    }
+    &.active {
+      color: var(--color-purple);
+    }
+  }
+
+  &-action {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    // button.btn {
+    //   flex: 1;
+    //   padding: 8px 0;
+    // }
+    .btn {
+      &--heart {
+        @include mobile {
+          display: none;
+        }
+      }
+      &--download {
+        @include mobile {
+          display: none;
+        }
+      }
+    }
+  }
+  &-progress {
+    display: flex;
+    align-items: center;
+    .btn {
+      &--heart {
+        flex: 0 !important;
+        display: none;
+        @include mobile {
+          display: block;
+          padding: 5px 15px;
+        }
+      }
+      &--download {
+        flex: 0 !important;
+        display: none;
+        padding: 5px;
+        @include mobile {
+          display: block;
+          padding: 5px 15px;
+        }
+      }
+    }
+    &__time {
+      color: var(--color-white);
+    }
+    &__range {
+      flex: 1;
+      margin: 0 8px;
+    }
+  }
+}

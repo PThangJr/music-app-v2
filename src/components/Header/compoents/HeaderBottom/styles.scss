@@ -1,0 +1,66 @@
+@use "../../../../scss/responsive" as *;
+.header-bottom {
+  .navbar {
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    @include mobile-tablet {
+      display: none;
+    }
+    &-item {
+      &__link {
+        display: inline-block;
+        font-weight: 600;
+        padding: 8px 20px;
+        transition: opacity 0.5s;
+        white-space: nowrap;
+        &.active {
+          color: var(--color-purple);
+        }
+        &:hover {
+          color: var(--color-purple-light);
+        }
+        &:hover,
+        &.active {
+          opacity: 0.7;
+          border-bottom: 2px solid var(--color-purple);
+        }
+      }
+    }
+  }
+  .current-song {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background: linear-gradient(90deg, #f27121, #e94057, #8a2387);
+    color: var(--color-white);
+    display: none;
+    transition: all 0.5s;
+    white-space: nowrap;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 100%;
+    @include mobile-tablet {
+      display: flex;
+    }
+    &__name {
+      text-transform: capitalize;
+    }
+    p {
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    span {
+      color: var(--color-white);
+      margin: 0 5px;
+      font-size: var(--font-size-sm);
+    }
+  }
+}

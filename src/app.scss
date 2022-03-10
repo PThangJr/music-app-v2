@@ -1,0 +1,24 @@
+.app {
+  background: var(--background-page);
+}
+.main {
+  padding-top: 130px;
+  min-height: 100vh;
+  padding-bottom: 200px;
+}
+.playlist {
+  &-custom {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(50%);
+  }
+}
+.modal-sidebar {
+  &--video {
+    .modal-sidebar-main-close {
+      color: white;
+    }
+  }
+}

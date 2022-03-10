@@ -1,0 +1,35 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow: hidden;
+  & + & {
+    margin-top: 10px;
+  }
+  .input-label {
+    margin-bottom: 8px;
+    // color: var(--color-text);
+    font-weight: 600;
+  }
+  .input-field {
+    padding: 10px 8px;
+    font-size: var(--font-size-md);
+    outline: none;
+    border: 2px solid grey;
+    width: 400px;
+    max-width: 550px;
+    &--full-width {
+      width: 100%;
+      max-width: 100%;
+    }
+    &--error {
+      border: 3px solid red;
+      border-radius: 5px;
+    }
+  }
+  .input-error {
+    margin-top: 5px;
+    font-style: italic;
+    color: red;
+  }
+}

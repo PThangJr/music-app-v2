@@ -1,0 +1,42 @@
+.btn {
+  cursor: pointer;
+  // min-width: 100px;
+  padding: 7px 20px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  i {
+    margin: 0 5px;
+  }
+  // min-height: 40px;
+  &:hover {
+    opacity: 0.8;
+  }
+  &--full-width {
+    width: 100%;
+  }
+  &--green {
+    background-color: #009432;
+    color: #fff;
+  }
+  &--orange {
+    background-color: #ff361f;
+    color: var(--color-white);
+  }
+  &--red {
+    background-color: var(--color-red);
+    color: var(--color-white);
+  }
+  &--disabled {
+    background-color: grey !important;
+    color: black;
+    cursor: progress;
+  }
+}

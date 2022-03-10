@@ -1,0 +1,43 @@
+@use "../../scss/responsive" as *;
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 250px - 80px);
+  .auths-form {
+    width: 500px;
+    box-shadow: 3px 4px 10px var(--rgba-2);
+    padding: 50px 40px 60px 40px;
+    background-color: var(--color-white);
+    overflow: hidden;
+    border-radius: 15px;
+    @include mobile {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+    .btn {
+      margin-top: 30px;
+    }
+    .input-group {
+      margin: 20px 0;
+    }
+    &__header {
+      font-size: var(--font-size-hg);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 25px;
+      // color: var(--color-text);
+    }
+    &-note {
+      text-align: right;
+      margin-top: 20px;
+      // color: var(--color-text);
+      &__link {
+        margin-left: 10px;
+        font-style: italic;
+        text-decoration: underline;
+        color: rgb(238, 38, 38);
+      }
+    }
+  }
+}

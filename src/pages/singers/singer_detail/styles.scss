@@ -1,0 +1,9 @@
+.singer-detail {
+  &-profile {
+    font-size: var(--font-size-xl);
+    line-height: 1.4;
+    font-weight: 400;
+    padding-right: 100px;
+    padding-left: 20px;
+  }
+}

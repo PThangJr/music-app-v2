@@ -1,0 +1,57 @@
+.video {
+  width: 100%;
+  background: rgba(26, 26, 26, 0.95);
+  height: 100%;
+  color: var(--color-white);
+  padding: 40px 0;
+  height: 100vh;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &-container {
+    margin: 0 auto;
+    width: 90%;
+    height: 70vh;
+  }
+  &-option {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: var(--font-size-hg);
+    // background: rgb(0, 153, 255);
+    background: var(--color-grey-1);
+    border-radius: 30px;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background: var(--color-grey-2);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    &__video {
+      &.active {
+        background: rgb(0, 153, 255);
+      }
+    }
+    &__karaoke {
+      &.active {
+        background: rgb(0, 153, 255);
+      }
+    }
+    div {
+      cursor: pointer;
+      width: 120px;
+      text-align: center;
+      padding: 8px 15px;
+    }
+  }
+}

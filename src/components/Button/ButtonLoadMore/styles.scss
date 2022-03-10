@@ -1,0 +1,25 @@
+.btn {
+  &--load-more {
+    background: #27b9fd;
+    color: white;
+    height: 40px;
+    border-radius: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: relative;
+    overflow: hidden;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 50%;
+      background: rgba(98, 113, 247, 0.2);
+      z-index: 0;
+    }
+  }
+  &--center {
+    margin: 0 auto;
+  }
+}

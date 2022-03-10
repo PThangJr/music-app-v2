@@ -1,0 +1,17 @@
+.player {
+  background: var(--background-player);
+  box-shadow: inset 0 0 8px var(--rgba-bsd);
+  z-index: 20;
+  color: var(--color-text-reverse);
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

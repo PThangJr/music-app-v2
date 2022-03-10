@@ -1,0 +1,25 @@
+.song-container {
+  // padding: 20px 0;
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__heading {
+      font-size: var(--font-size-xl);
+      text-transform: uppercase;
+      font-weight: 700;
+      vertical-align: middle;
+      margin: 10px 0;
+      i {
+        margin-left: 10px;
+      }
+    }
+    .btn {
+      &--play-all {
+        i {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

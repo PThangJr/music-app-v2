@@ -1,0 +1,30 @@
+.heading {
+  font-size: var(--font-size-xl);
+  text-transform: uppercase;
+  padding: 10px 0;
+  font-weight: 700;
+  &-link {
+    font-size: var(--font-size-xl);
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--color-purple-light);
+      transition: all 0.4s;
+      margin-left: 15px;
+    }
+    i {
+      margin-right: 10px;
+    }
+    &:hover {
+      color: rgb(207, 18, 207);
+      &::before {
+        width: calc(100% - 15px);
+      }
+    }
+  }
+}
