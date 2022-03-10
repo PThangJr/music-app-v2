@@ -1,4 +1,4 @@
-@use "../../scss/responsive" as *;
+@use '../../scss/responsive' as *;
 .modal-sidebar {
   &.sidebar-playlist {
     .modal-sidebar-main-close {
@@ -8,6 +8,15 @@
   }
 }
 .playlist {
+  .card-song {
+    &__singers {
+      &-link {
+        @include mobile-tablet {
+          pointer-events: none;
+        }
+      }
+    }
+  }
   width: 400px;
   // min-height: 100vh;
   background: #44444c;
@@ -39,7 +48,7 @@
   &-main {
     overflow-y: scroll;
     height: 100vh;
-    padding-bottom: 130px;
+    padding-bottom: 140px;
 
     .song-list {
       position: relative;

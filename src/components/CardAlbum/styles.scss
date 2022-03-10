@@ -5,6 +5,7 @@
   &-image {
     transition: all 0.5s;
     border-radius: 12px;
+    -webkit-border-radius: 12px;
     overflow: hidden;
     position: relative;
     &:hover {

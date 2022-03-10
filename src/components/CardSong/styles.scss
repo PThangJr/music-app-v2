@@ -1,4 +1,4 @@
-@use "../../scss/responsive" as *;
+@use '../../scss/responsive' as *;
 .card-song {
   display: flex;
   align-items: center;
@@ -123,8 +123,7 @@
             $size: 20px;
             width: $size;
             height: $size;
-            background: url("https://zmp3-static.zadn.vn/skins/zmp3-v6.1/images/icons/icon-playing.gif")
-              center;
+            background: url('https://zmp3-static.zadn.vn/skins/zmp3-v6.1/images/icons/icon-playing.gif') center;
             background-size: cover;
           }
         }
@@ -158,9 +157,6 @@
         display: -webkit-box;
       }
       &-link {
-        @include mobile-tablet {
-          pointer-events: none;
-        }
       }
       a {
         font-size: var(--font-size-xs);

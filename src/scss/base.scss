@@ -1,3 +1,4 @@
+@import './responsive';
 :root {
   // Colors
   --background-page: rgba(245, 245, 245, 1);
@@ -38,19 +39,14 @@
   --font-size-super: 3.2rem;
 
   //React toastify config Colors
-  --toastify-color-progress-light: linear-gradient(
-    to right,
-    #4cd964,
-    #5ac8fa,
-    #007aff,
-    #34aadc,
-    #5856d6,
-    #ff2d55
-  );
+  --toastify-color-progress-light: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
 }
 
 html {
   font-size: 62.5%;
+  @include mobile {
+    font-size: 58%;
+  }
 }
 
 body {

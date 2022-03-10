@@ -1,11 +1,10 @@
-import classNames from "classnames";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { authenticate } from "../../pages/auths/authSlice";
-import HeaderBottom from "./compoents/HeaderBottom";
-import HeaderTop from "./compoents/HeaderTop";
-import "./styles.scss";
+import classNames from 'classnames';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenticate } from '../../pages/auths/authSlice';
+import HeaderBottom from './components/HeaderBottom';
+import HeaderTop from './components/HeaderTop';
+import './styles.scss';
 const Header = () => {
   //************Declaration***********
   const dispatch = useDispatch();
@@ -36,9 +35,9 @@ const Header = () => {
   //************Side effect***********
   useEffect(() => {
     setOffsetY(window.scrollY);
-    window.addEventListener("scroll", handleNavigation);
+    window.addEventListener('scroll', handleNavigation);
     return () => {
-      window.removeEventListener("scroll", handleNavigation);
+      window.removeEventListener('scroll', handleNavigation);
     };
   }, [handleNavigation]);
 
@@ -53,7 +52,7 @@ const Header = () => {
   //***********Render UI*****************
 
   return (
-    <header className={classNames("header", { scroll: isScroll })}>
+    <header className={classNames('header', { scroll: isScroll })}>
       <div className="container-md">
         <HeaderTop />
         <HeaderBottom />
