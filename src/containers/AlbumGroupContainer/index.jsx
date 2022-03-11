@@ -1,16 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import CardAlbum from "../../components/CardAlbum";
-import CardSkeletons from "../../components/CardAlbum/CardSkeletons";
-import Heading from "../../components/Heading";
+import React from 'react';
+import CardAlbum from '../../components/CardAlbum';
+import CardSkeletons from '../../components/CardAlbum/CardSkeletons';
+import Heading from '../../components/Heading';
 
 const AlbumGroupContainer = (props) => {
-  const {
-    headingText = "",
-    linkUrl = "",
-    albums = [],
-    loading = { isLoading: false, totalItems: 0 },
-  } = props;
+  const { headingText = '', linkUrl = '', albums = [], loading = { isLoading: false, totalItems: 0 } } = props;
   // console.log(albums);
   const renderAlbumGroup = () => {
     if (loading.isLoading) {
