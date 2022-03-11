@@ -1,24 +1,19 @@
-import queryString from "query-string";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { fetchCategories } from "../pages/categories/categorySlice";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '../pages/categories/categorySlice';
 const useCategories = (props) => {
-  const location = useLocation();
-  const { limit, page } = queryString.parse(location.search, {
-    parseNumbers: true,
-  });
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
       fetchCategories({
         params: {
-          limit: limit || props?.params?.limit,
-          page: page || props?.params?.page,
+          limit: props?.params?.limit,
+          page: props?.params?.page,
+          sort: props?.params?.sort,
         },
       })
     );
-  }, [dispatch, limit, page, props?.params?.limit, props?.params?.page]);
+  }, [dispatch, props?.params?.limit, props?.params?.page, props?.params?.sort]);
   const categories = useSelector((state) => state.categories);
   return { ...categories };
 };

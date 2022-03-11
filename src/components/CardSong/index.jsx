@@ -1,22 +1,19 @@
-import classNames from "classnames";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { setIsPlaying } from "../../features/Player/PlayerControl/playerControlSlice";
-import { setTimeListen } from "../../features/Player/PlayerControl/timeListenSlice";
-import {
-  addSongToSongListNext,
-  chooseSong,
-  setCurrentSong,
-} from "../../features/Playlist/playlistSlice";
-import { addFavoriteSong } from "../../pages/favorites/favoriteSongSlice";
-import "./styles.scss";
+import classNames from 'classnames';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { setIsPlaying } from '../../features/Player/PlayerControl/playerControlSlice';
+import { setTimeListen } from '../../features/Player/PlayerControl/timeListenSlice';
+import { addSongToSongListNext, chooseSong, setCurrentSong } from '../../features/Playlist/playlistSlice';
+import { addFavoriteSong } from '../../pages/favorites/favoriteSongSlice';
+import './styles.scss';
 const CardSong = ({
-  song = { name: "", _id: "", singers: [] },
+  song = { name: '', _id: '', singers: [] },
   fullInfo = true, // If fullInfo === false. Song does not show views
   style = {},
   ranking = false, // If ranking === true. Song show index in head
   index,
+  hasAvatar = true,
 }) => {
   // Declaration
   const dispatch = useDispatch();
@@ -59,14 +56,11 @@ const CardSong = ({
     dispatch(addSongToSongListNext(song));
   };
   return (
-    <div
-      className={classNames("card-song", { active: isCurrentSong })}
-      style={style}
-    >
+    <div className={classNames('card-song', { active: isCurrentSong })} style={style}>
       <div className="card-song-content" onClick={handleChooseSong}>
         {ranking && (
           <span
-            className={classNames("card-song-content-index", {
+            className={classNames('card-song-content-index', {
               [`card-song-content-index--${index + 1}`]: index + 1,
             })}
           >
@@ -76,7 +70,7 @@ const CardSong = ({
 
         <div className="card-song-content-image">
           <img
-            src={song?.image?.secure_url || ""}
+            src={song?.image?.secure_url || ''}
             onError={fallbackImage}
             alt=""
             className="card-song-content-image__img"
@@ -102,12 +96,12 @@ const CardSong = ({
           <div className="card-song-info__singers">
             {song?.singers.map((singer, index) => (
               <React.Fragment key={singer?._id}>
-                {index > 0 && <span> , </span>}
                 <Link
-                  className="card-song-info__singers-link"
+                  className={classNames('card-song-info__singers-link', `card-song-info__singers-link--${index}`)}
                   onClick={handleStopropagation}
                   to={`/ca-si/${singer?.slug}`}
                 >
+                  {index > 0 && <span> , </span>}
                   {singer?.name}
                 </Link>
               </React.Fragment>
@@ -123,18 +117,12 @@ const CardSong = ({
           {song?.views}
         </div>
       )}
-      {fullInfo && (
+      {fullInfo && hasAvatar && (
         <div className="card-song-action">
-          <p
-            className={classNames("icon icon--cursor", { active: isFavorite })}
-            onClick={handleAddFavorite}
-          >
+          <p className={classNames('icon icon--cursor', { active: isFavorite })} onClick={handleAddFavorite}>
             <i className="fas fa-heart"></i>
           </p>
-          <p
-            className="icon icon--cursor"
-            onClick={handleAddNextSongToSongListNext}
-          >
+          <p className="icon icon--cursor" onClick={handleAddNextSongToSongListNext}>
             <i className="fas fa-angle-double-right"></i>
           </p>
         </div>

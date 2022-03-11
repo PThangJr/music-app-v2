@@ -52,7 +52,7 @@ $xl: 1200px;
 }
 
 @mixin desktop {
-  @media (min-width: #{$desktop-width}) {
+  @media (min-width: #{$xl}) {
     @content;
   }
 }
