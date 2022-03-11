@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
-import AlbumGroupContainer from "../../containers/AlbumGroupContainer";
-import useAlbumGroups from "../../hooks/useAlbumGroups";
-import { fetchAlbumsOfAlbumGroups } from "./albumsOfAlbumGroupsSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import AlbumGroupContainer from '../../containers/AlbumGroupContainer';
+import useAlbumGroups from '../../hooks/useAlbumGroups';
+import { fetchAlbumsOfAlbumGroups } from './albumsOfAlbumGroupsSlice';
 
-import "./styles.scss";
+import './styles.scss';
 const AlbumsPage = () => {
   const dispatch = useDispatch();
 
-  const albumGroups = useAlbumGroups({ params: { sort: "createdAt" } });
+  const albumGroups = useAlbumGroups({ params: { sort: 'createdAt' } });
 
   useEffect(() => {
     if (albumGroups.data.length > 1) {
@@ -38,11 +38,8 @@ const AlbumsPage = () => {
               isLoading: albumsOfAlbumGroups.isLoading,
               totalItems: 6,
             }}
-            albums={
-              albumsOfAlbumGroups.data.find(
-                (abg) => Object.keys(abg)[0] === albumGroup.name
-              )?.[albumGroup.name]
-            }
+            albums={albumsOfAlbumGroups.data.find((abg) => Object.keys(abg)[0] === albumGroup.name)?.[albumGroup.name]}
+            col={{ xl: 2 }}
           />
         );
       })}

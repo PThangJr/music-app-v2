@@ -18,6 +18,7 @@ const SongContainer = (props) => {
     ranking = false,
     // btnPlayAll = true,
     showHeadingWhenNoSong = true,
+    hasAvatar = true,
   } = props;
   const dispatch = useDispatch();
   const handlePlayAllSongs = () => {
@@ -61,7 +62,13 @@ const SongContainer = (props) => {
             {renderHeader()}
             <div className="song-container__main">
               {songs.map((song, index) => (
-                <CardSong key={`${headingText}-${song._id}`} ranking={ranking} index={index} song={song} />
+                <CardSong
+                  hasAvatar={hasAvatar}
+                  key={`${headingText}-${song._id}`}
+                  ranking={ranking}
+                  index={index}
+                  song={song}
+                />
               ))}
             </div>
             {children}
