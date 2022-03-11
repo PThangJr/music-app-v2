@@ -1,34 +1,35 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./app.scss";
-import Header from "./components/Header";
-import ModalSidebar from "./components/ModalSidebar";
-import ScrollToTop from "./components/ScrollToTop";
-import Player from "./features/Player";
-import Playlist from "./features/Playlist";
-import { setDisplayPlaylist } from "./features/Playlist/displayPlaylistSlice";
-import Video from "./features/Video";
-import { setDisplayVideo } from "./features/Video/displayVideoSlice";
-import AlbumsPage from "./pages/albums";
-import AlbumDetailPage from "./pages/albums/album_detail";
-import AlbumGroupsPage from "./pages/album_groups";
-import AuthsPage from "./pages/auths";
-import LoginPage from "./pages/auths/login";
-import RegisterPage from "./pages/auths/register";
-import CategoriesPage from "./pages/categories";
-import CategoryDetail from "./pages/categories/category_detail";
-import FavoritesPage from "./pages/favorites";
-import HomePage from "./pages/home";
-import RankPage from "./pages/rank";
-import SearchPage from "./pages/search";
-import SingersPage from "./pages/singers";
-import SingerDetail from "./pages/singers/singer_detail";
-import SongsPage from "./pages/songs";
-import "./scss/base.scss";
-import "./scss/grid.scss";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './app.scss';
+import Header from './components/Header';
+import ModalSidebar from './components/ModalSidebar';
+import ScrollToTop from './components/ScrollToTop';
+import Player from './features/Player';
+import { setIsPlayingVideo } from './features/Player/PlayerControl/playerControlSlice';
+import Playlist from './features/Playlist';
+import { setDisplayPlaylist } from './features/Playlist/displayPlaylistSlice';
+import Video from './features/Video';
+import { setDisplayVideo } from './features/Video/displayVideoSlice';
+import AlbumsPage from './pages/albums';
+import AlbumDetailPage from './pages/albums/album_detail';
+import AlbumGroupsPage from './pages/album_groups';
+import AuthsPage from './pages/auths';
+import LoginPage from './pages/auths/login';
+import RegisterPage from './pages/auths/register';
+import CategoriesPage from './pages/categories';
+import CategoryDetail from './pages/categories/category_detail';
+import FavoritesPage from './pages/favorites';
+import HomePage from './pages/home';
+import RankPage from './pages/rank';
+import SearchPage from './pages/search';
+import SingersPage from './pages/singers';
+import SingerDetail from './pages/singers/singer_detail';
+import SongsPage from './pages/songs';
+import './scss/base.scss';
+import './scss/grid.scss';
 const App = () => {
   //************Declaration***********
   const dispatch = useDispatch();
@@ -40,7 +41,10 @@ const App = () => {
   const displayPlaylist = useSelector((state) => state.displayPlaylist);
   const displayVideo = useSelector((state) => state.displayVideo);
   //***********Handle event**************
-
+  const handleCloseVideo = () => {
+    dispatch(setDisplayVideo(false));
+    dispatch(setIsPlayingVideo(false));
+  };
   //***********Render UI*****************
 
   return (
@@ -114,7 +118,7 @@ const App = () => {
         <ModalSidebar
           direction="bottom-to-top"
           isOpen={displayVideo}
-          onClose={() => dispatch(setDisplayVideo(false))}
+          onClose={handleCloseVideo}
           className="modal-sidebar--video"
         >
           <Video />

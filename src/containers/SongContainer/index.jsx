@@ -1,24 +1,22 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import Button from "../../components/Button";
-import CardSong from "../../components/CardSong";
-import CardSongSkeletons from "../../components/CardSong/CardSongSkeletons";
-import Heading from "../../components/Heading";
-import { setIsPlaying } from "../../features/Player/PlayerControl/playerControlSlice";
-import { playAllSongs } from "../../features/Playlist/playlistSlice";
-import "./styles.scss";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import Button from '../../components/Button';
+import CardSong from '../../components/CardSong';
+import CardSongSkeletons from '../../components/CardSong/CardSongSkeletons';
+import Heading from '../../components/Heading';
+import { setIsPlaying } from '../../features/Player/PlayerControl/playerControlSlice';
+import { playAllSongs } from '../../features/Playlist/playlistSlice';
+import './styles.scss';
 const SongContainer = (props) => {
   const {
     songs = [],
-    linkUrl = "",
-    headingText = "",
-    onPlayAllSongList,
+    linkUrl = '',
+    headingText = '',
     loading = { isLoading: false, totalItems: 1 },
     children,
     hasHeader = true,
     ranking = false,
-    btnPlayAll = true,
+    // btnPlayAll = true,
     showHeadingWhenNoSong = true,
   } = props;
   const dispatch = useDispatch();
@@ -33,11 +31,7 @@ const SongContainer = (props) => {
       return (
         <header className="song-container-header">
           <Heading linkUrl={linkUrl} headingText={headingText} />
-          <Button
-            className="btn--green btn--play-all"
-            btnSmall
-            onClick={handlePlayAllSongs}
-          >
+          <Button className="btn--green btn--play-all" btnSmall onClick={handlePlayAllSongs}>
             Phát tất cả
             <i className="fa-solid fa-play"></i>
           </Button>
@@ -67,29 +61,23 @@ const SongContainer = (props) => {
             {renderHeader()}
             <div className="song-container__main">
               {songs.map((song, index) => (
-                <CardSong
-                  key={`${headingText}-${song._id}`}
-                  ranking={ranking}
-                  index={index}
-                  song={song}
-                />
+                <CardSong key={`${headingText}-${song._id}`} ranking={ranking} index={index} song={song} />
               ))}
             </div>
             {children}
           </>
         );
       } else {
-        if (hasHeader && showHeadingWhenNoSong)
-          return <Heading headingText="Không có bài hát nào" />;
+        if (hasHeader && showHeadingWhenNoSong) return <Heading headingText="Không có bài hát nào" />;
       }
     }
   };
 
-  const handleClick = () => {
-    if (typeof onPlayAllSongList === "function") {
-      onPlayAllSongList();
-    }
-  };
+  // const handleClick = () => {
+  //   if (typeof onPlayAllSongList === 'function') {
+  //     onPlayAllSongList();
+  //   }
+  // };
 
   return <div className="song-container">{renderSongs()}</div>;
 };

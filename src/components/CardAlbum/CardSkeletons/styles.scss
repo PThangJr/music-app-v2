@@ -1,7 +1,7 @@
 .card-skeleton {
   height: 160px;
   background-color: var(--color-grey-3);
-  border-radius: 6px;
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -33,7 +33,7 @@
   &__loader:after {
     position: absolute;
     top: 0;
-    content: "";
+    content: '';
   }
   &__loader:before {
     left: -1.5em;

@@ -1,21 +1,23 @@
-import classNames from "classnames";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import YouTube from "react-youtube";
-import {
-  setIsPlaying,
-  setIsPlayingVideo,
-  setVideoPlay,
-} from "../Player/PlayerControl/playerControlSlice";
-import "./styles.scss";
+import classNames from 'classnames';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import YouTube from 'react-youtube';
+import { setIsPlaying, setIsPlayingVideo, setVideoPlay } from '../Player/PlayerControl/playerControlSlice';
+import './styles.scss';
 const Video = () => {
   //************Declaration***********
   const dispatch = useDispatch();
   //************Initial state*********
-  const [panel, setPanel] = useState("videoId");
+  const [panel, setPanel] = useState('videoId');
 
   //************Side effect***********
-
+  useEffect(() => {
+    //Component unmount
+    return () => {
+      console.log('unmount');
+      dispatch(setIsPlayingVideo(false));
+    };
+  }, [dispatch]);
   //***********Get data from store*****************
   const { currentSong } = useSelector((state) => state.playlist);
   const { isPlaying } = useSelector((state) => state.playerControls);
@@ -35,18 +37,17 @@ const Video = () => {
     setPanel(p);
   };
   const handleReadyVideo = () => {
-    console.log("ready");
+    // console.log('ready');
   };
   const handleError = () => {
     dispatch(setIsPlayingVideo(false));
   };
   //***********Render UI*****************
   const renderVideo = () => {
-    console.log(currentSong.videoId, panel);
     if (currentSong?.[panel]) {
       return (
         <YouTube
-          opts={{ width: "100%", height: "100%" }}
+          opts={{ width: '100%', height: '100%' }}
           videoId={currentSong?.[panel]}
           onPlay={handlePlayVideo}
           onReady={handleReadyVideo}
@@ -62,18 +63,18 @@ const Video = () => {
       <div className="container">
         <div className="video-option">
           <div
-            className={classNames("video-option__video", {
-              active: panel === "videoId",
+            className={classNames('video-option__video', {
+              active: panel === 'videoId',
             })}
-            onClick={() => handleChangePanel("videoId")}
+            onClick={() => handleChangePanel('videoId')}
           >
             Video
           </div>
           <div
-            className={classNames("video-option__karaoke", {
-              active: panel === "karaokeId",
+            className={classNames('video-option__karaoke', {
+              active: panel === 'karaokeId',
             })}
-            onClick={() => handleChangePanel("karaokeId")}
+            onClick={() => handleChangePanel('karaokeId')}
           >
             Karaoke
           </div>

@@ -15,9 +15,11 @@
       height: 150%;
       background-color: var(--color-grey-2);
       transform: skew(35deg);
+      border-radius: 10px;
       animation: animateFromLeftToRight 1.1s ease-in-out infinite;
     }
     &::after {
+      border-radius: 10px 0 0 10px;
       content: '';
       position: absolute;
       width: 15%;
