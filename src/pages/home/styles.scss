@@ -1,9 +1,77 @@
+@import '../../scss/responsive';
 .home-page {
-  .home-rank {
-    padding: 30px 0;
+  section.home-section {
+    margin: 40px 0;
   }
-  .album-groups {
-    // padding: 20px 0;
-    // margin-bottom: 20px;
+  //Custom css home ranking
+  .home-section__rank {
+    margin-top: 20px;
+    .song-container {
+      &-header {
+        button {
+          @include desktop {
+            display: none;
+          }
+        }
+      }
+      .card-song {
+        @include desktop {
+          padding: 8px 5px;
+          justify-content: space-between;
+        }
+        &-content {
+          @include desktop {
+            flex: 1;
+          }
+          &-index {
+            @include desktop {
+              width: 33px;
+              font-size: var(--font-size-hg);
+            }
+            @include mobile {
+              width: 25px;
+            }
+            // text-align: left;
+          }
+          &__name {
+            @include desktop {
+              max-width: 150px;
+            }
+          }
+        }
+        &-info {
+          &__singers {
+            @include desktop {
+              display: flex;
+              align-items: center;
+              flex-wrap: nowrap;
+            }
+            &-link {
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              display: -webkit-box;
+            }
+          }
+        }
+        &-views {
+          @include desktop {
+            flex: 0;
+            display: none;
+          }
+        }
+        &-action {
+          // display: none;
+          @include desktop {
+            flex: 0;
+          }
+          p.icon.icon--cursor:first-child {
+            @include desktop {
+              display: none;
+            }
+          }
+        }
+      }
+    }
   }
 }

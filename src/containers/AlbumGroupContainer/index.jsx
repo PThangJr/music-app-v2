@@ -1,15 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import CardAlbum from "../../components/CardAlbum";
-import CardSkeletons from "../../components/CardAlbum/CardSkeletons";
-import Heading from "../../components/Heading";
+import classNames from 'classnames';
+import React from 'react';
+import CardAlbum from '../../components/CardAlbum';
+import CardSkeletons from '../../components/CardAlbum/CardSkeletons';
+import Heading from '../../components/Heading';
 
 const AlbumGroupContainer = (props) => {
   const {
-    headingText = "",
-    linkUrl = "",
+    headingText = '',
+    linkUrl = '',
     albums = [],
-    loading = { isLoading: false, totalItems: 0 },
+    loading = { isLoading: false, totalItems: 6 },
+    col = { xl: 2, lg: 3, md: 4, sm: 6 },
   } = props;
   // console.log(albums);
   const renderAlbumGroup = () => {
@@ -31,9 +32,17 @@ const AlbumGroupContainer = (props) => {
             )}
           </header>
           <div className="album-group-container__main">
-            <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 ">
+            <div className="row">
               {albums.map((album) => (
-                <div className="col" key={album._id}>
+                <div
+                  className={classNames('col col-6', {
+                    [`col-xl-${col.xl}`]: col.xl,
+                    [`col-lg-${col.lg}`]: col.lg,
+                    [`col-md-${col.md}`]: col.md,
+                    [`col-sm-${col.sm}`]: col.sm,
+                  })}
+                  key={album._id}
+                >
                   <CardAlbum album={album} />
                 </div>
               ))}
