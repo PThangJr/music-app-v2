@@ -1,14 +1,13 @@
-import React from "react";
-import CardSinger from "../../components/CardSinger";
-import Pagination from "../../components/Pagination";
-import SingerContainer from "../../containers/SingerContainer";
-import useQuery from "../../hooks/useQuery";
-import useSingers from "../../hooks/useSingers";
-import "./styles.scss";
+import React from 'react';
+import Pagination from '../../components/Pagination';
+import SingerContainer from '../../containers/SingerContainer';
+import useQuery from '../../hooks/useQuery';
+import useSingers from '../../hooks/useSingers';
+import './styles.scss';
 const SingersPage = () => {
   const { limit, page, sort } = useQuery();
   const singers = useSingers({
-    params: { limit: limit || 18, page: page || 1, sort: sort || "slug" },
+    params: { limit: limit || 18, page: page || 1, sort: sort || 'slug' },
   });
   return (
     <div className="singer-page">

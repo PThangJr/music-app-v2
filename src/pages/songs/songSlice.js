@@ -1,61 +1,51 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
-import songsAPI from "../../api/songAPI";
-import storage from "../../utils/storage";
-import { updateFavoriteSong } from "../favorites/favoriteSongSlice";
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import songsAPI from '../../api/songAPI';
+import storage from '../../utils/storage';
+import { updateFavoriteSong } from '../favorites/favoriteSongSlice';
 
-const initData = [];
 const initialState = {
-  data: initData,
+  data: [],
   isLoading: false,
-  message: "",
+  message: '',
   error: null,
   album: {},
 };
-const currentSongStorage = storage("currentSong");
-export const fetchSongs = createAsyncThunk(
-  "/songs",
-  async (payload, thunkAPI) => {
-    try {
-      const response = await songsAPI.getSongs(payload);
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+const currentSongStorage = storage('currentSong');
+export const fetchSongs = createAsyncThunk('/songs', async (payload, thunkAPI) => {
+  try {
+    const response = await songsAPI.getSongs(payload);
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
-export const fetchUpdateSong = createAsyncThunk(
-  "/songs/:id/update",
-  async (payload, thunkAPI) => {
-    try {
-      const response = await songsAPI.updateSong(payload);
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+});
+export const fetchUpdateSong = createAsyncThunk('/songs/:id/update', async (payload, thunkAPI) => {
+  try {
+    const response = await songsAPI.updateSong(payload);
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
-export const fetchUpdateViewsOfSong = createAsyncThunk(
-  "/songs/:id/views/update",
-  async (payload, thunkAPI) => {
-    try {
-      const response = await songsAPI.updateViewsOfSong(payload);
-      thunkAPI.dispatch(updateFavoriteSong(response.data));
+});
+export const fetchUpdateViewsOfSong = createAsyncThunk('/songs/:id/views/update', async (payload, thunkAPI) => {
+  try {
+    const response = await songsAPI.updateViewsOfSong(payload);
+    thunkAPI.dispatch(updateFavoriteSong(response.data));
 
-      // thunkAPI.dispatch(setCurrentSong(response.data));
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+    // thunkAPI.dispatch(setCurrentSong(response.data));
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
 const songSlice = createSlice({
-  name: "songs",
+  name: 'songs',
   initialState,
   extraReducers: {
     [fetchSongs.pending](state, action) {
       state.isLoading = true;
-      state.data = initData;
+      state.data = [];
       state.album = {};
     },
     [fetchSongs.fulfilled](state, action) {

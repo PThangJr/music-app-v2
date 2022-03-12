@@ -1,8 +1,6 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
-import searchAPI from "../../api/searchAPI";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import searchAPI from '../../api/searchAPI';
 
-const initData = [];
 const initialState = {
   songs: {
     data: [],
@@ -21,22 +19,19 @@ const initialState = {
     totalPages: 1,
   },
   isLoading: false,
-  message: "",
+  message: '',
   error: null,
 };
-export const fetchSearch = createAsyncThunk(
-  "/search",
-  async (payload, thunkAPI) => {
-    try {
-      const response = await searchAPI.search(payload);
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+export const fetchSearch = createAsyncThunk('/search', async (payload, thunkAPI) => {
+  try {
+    const response = await searchAPI.search(payload);
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 const searchSlice = createSlice({
-  name: "search",
+  name: 'search',
   initialState,
   extraReducers: {
     [fetchSearch.pending](state, action) {
