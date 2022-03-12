@@ -12,6 +12,8 @@
   justify-content: center;
   font-weight: 700;
   font-size: var(--font-size-sm);
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
   i {
     margin: 0 5px;
   }

@@ -70,9 +70,7 @@ const Playlist = ({ className }) => {
 
   return (
     <div className={'playlist ' + className}>
-      <Heading className="playlist__heading" textAlign="center">
-        Danh sách phát
-      </Heading>
+      <Heading headingText="Danh sách phát" className="playlist__heading" textAlign="center"></Heading>
       <div className="playlist-main">
         <div className="playlist-list">
           <DragDropContext onDragEnd={handleDragEnd}>

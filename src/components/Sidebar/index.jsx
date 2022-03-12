@@ -1,10 +1,9 @@
-import classNames from "classnames";
-import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import useCategories from "../../hooks/useCategories";
-import Heading from "../Heading";
-import routes from "./routes";
-import "./styles.scss";
+import classNames from 'classnames';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import Heading from '../Heading';
+import routes from './routes';
+import './styles.scss';
 const Sidebar = ({ onClose }) => {
   const [sidebarRoutes, setSidebarRoutes] = useState(() => routes);
   const [sidebarNavSub, setSidebarNavSub] = useState(false);
@@ -29,7 +28,7 @@ const Sidebar = ({ onClose }) => {
   //   console.log(sidebarRoutes);
   const handleShowSidebarNavSub = (e) => {
     // e.stopPropagation();
-    console.log("click");
+    console.log('click');
     setSidebarNavSub(!sidebarNavSub);
   };
   const handleClickLinkItem = () => {
@@ -39,23 +38,16 @@ const Sidebar = ({ onClose }) => {
   };
   return (
     <div className="sidebar">
-      <Heading center>Menu</Heading>
+      <Heading center headingText="Menu"></Heading>
       <ul className="sidebar-nav">
         {sidebarRoutes.map((route) => (
           <React.Fragment key={route.name}>
             <li className="sidebar-nav-item">
-              <NavLink
-                className="sidebar-nav-item__link"
-                to={route.to}
-                onClick={handleClickLinkItem}
-              >
+              <NavLink className="sidebar-nav-item__link" to={route.to} onClick={handleClickLinkItem}>
                 {route.Icon()}
                 {route.name}
                 {route.childs && (
-                  <p
-                    className="icon icon--dropdown"
-                    onClick={handleShowSidebarNavSub}
-                  >
+                  <p className="icon icon--dropdown" onClick={handleShowSidebarNavSub}>
                     <i className="fa-solid fa-caret-right"></i>
                   </p>
                 )}
@@ -63,7 +55,7 @@ const Sidebar = ({ onClose }) => {
             </li>
             {route.childs && (
               <ul
-                className={classNames("sidebar-nav-sub", {
+                className={classNames('sidebar-nav-sub', {
                   active: sidebarNavSub,
                 })}
               >
@@ -71,9 +63,7 @@ const Sidebar = ({ onClose }) => {
                   <li key={child.name} className="sidebar-nav-item">
                     <NavLink
                       className={({ isActive }) =>
-                        isActive
-                          ? "sidebar-nav-item__link active"
-                          : "sidebar-nav-item__link"
+                        isActive ? 'sidebar-nav-item__link active' : 'sidebar-nav-item__link'
                       }
                       to={child.to}
                       onClick={handleClickLinkItem}

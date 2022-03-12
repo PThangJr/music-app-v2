@@ -52,7 +52,10 @@
 
     .song-list {
       position: relative;
-      // padding: 0 10px;
+      padding: 0 10px;
+      @include mobile {
+        padding: 0 6px;
+      }
       &--next {
         border-bottom: 1px solid transparent;
       }

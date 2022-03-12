@@ -4,6 +4,7 @@ import Button from '../../components/Button';
 import CardSong from '../../components/CardSong';
 import CardSongSkeletons from '../../components/CardSong/CardSongSkeletons';
 import Heading from '../../components/Heading';
+import Sort from '../../components/Sort';
 import { setIsPlaying } from '../../features/Player/PlayerControl/playerControlSlice';
 import { playAllSongs } from '../../features/Playlist/playlistSlice';
 import './styles.scss';
@@ -19,19 +20,36 @@ const SongContainer = (props) => {
     // btnPlayAll = true,
     showHeadingWhenNoSong = true,
     hasAvatar = true,
+    sorting = false,
   } = props;
+  //************Declaration***********
   const dispatch = useDispatch();
+
+  //************Initial state*********
+
+  //************Side effect***********
+
+  //***********Get data from store*****************
+
+  //***********Handle event**************
   const handlePlayAllSongs = () => {
     if (songs.length) {
       dispatch(playAllSongs(songs));
       dispatch(setIsPlaying(true));
     }
   };
+
+  //***********Render UI*****************
   const renderHeader = () => {
     if (hasHeader) {
       return (
         <header className="song-container-header">
-          <Heading linkUrl={linkUrl} headingText={headingText} />
+          <div className="song-container-header__left">
+            <Heading linkUrl={linkUrl} headingText={headingText}>
+              {sorting && <Sort />}
+            </Heading>
+          </div>
+
           <Button className="btn--green btn--play-all" btnSmall onClick={handlePlayAllSongs}>
             Phát tất cả
             <i className="fa-solid fa-play"></i>

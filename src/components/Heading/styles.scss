@@ -3,6 +3,14 @@
   text-transform: uppercase;
   padding: 15px 0;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  &-text {
+    padding-right: 10px;
+    white-space: nowrap;
+    flex: 1;
+  }
   &-link {
     font-size: var(--font-size-xl);
     position: relative;
