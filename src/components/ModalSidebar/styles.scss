@@ -48,7 +48,7 @@
     // width: 240px;
     min-width: 240px;
     z-index: 15;
-    transition: all 0.5s;
+    transition: all 0.35s;
     transform: translateX(-100%);
     &.active {
       transform: translateX(0);

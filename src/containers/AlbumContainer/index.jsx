@@ -17,7 +17,7 @@ const AlbumContainer = (props) => {
     if (loading.isLoading) {
       return (
         <>
-          <Heading>Loading...</Heading>
+          <Heading headingText="Loading..."></Heading>
           <CardSkeletons col={col} totalItems={loading.totalItems} />
         </>
       );
