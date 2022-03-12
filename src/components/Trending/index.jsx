@@ -1,14 +1,11 @@
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './styles.scss';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import { fetchAlbums } from '../../pages/albums/albumSlice';
 import CardAlbum from '../CardAlbum';
-import AlbumContainer from '../../containers/AlbumContainer';
-import CardSkeletons from '../CardAlbum/CardSkeletons';
+import './styles.scss';
 const Trending = () => {
   const dispatch = useDispatch();
 

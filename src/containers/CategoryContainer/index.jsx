@@ -1,23 +1,23 @@
-import React from "react";
-import CardSkeletons from "../../components/CardAlbum/CardSkeletons";
-import CardCategory from "../../components/CardCategory";
-import Heading from "../../components/Heading";
-import classNames from "classnames";
+import React from 'react';
+import CardSkeletons from '../../components/CardAlbum/CardSkeletons';
+import CardCategory from '../../components/CardCategory';
+import Heading from '../../components/Heading';
+import classNames from 'classnames';
 
 const CategoryContainer = (props) => {
   const {
     categories = [],
     loading = { isLoading: false, totalItems: 0 },
-    linkUrl = "",
-    headingText = "",
-    col = { xl: 6, lg: "2_4", md: 3, sm: 4 },
+    linkUrl = '',
+    headingText = '',
+    col = { xl: 6, lg: '2_4', md: 3, sm: 4 },
   } = props;
 
   const renderCategories = () => {
     if (loading.isLoading) {
       return (
         <>
-          <Heading>Loading...</Heading>
+          <Heading headingText="Loading..."></Heading>
           <CardSkeletons col={col} totalItems={loading.totalItems} />
         </>
       );
@@ -27,7 +27,7 @@ const CategoryContainer = (props) => {
           <Heading linkUrl={linkUrl} headingText={headingText}></Heading>
           <div
             className={classNames(
-              "row"
+              'row'
               // { [`row-cols-sm-${sm}`]: sm },
               // { [`row-cols-xs-${xs}`]: xs },
               // { [`row-cols-md-${md}`]: md },
@@ -38,7 +38,7 @@ const CategoryContainer = (props) => {
             {categories.map((category) => (
               <div
                 className={classNames(
-                  "col col-6",
+                  'col col-6',
                   { [`col-xl-${col.xl}`]: col.xl },
                   { [`col-lg-${col.lg}`]: col.lg },
                   { [`col-md-${col.md}`]: col.md },
