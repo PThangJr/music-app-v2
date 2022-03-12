@@ -1,25 +1,26 @@
-import React, { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import Button from "../../../Button";
-import InputField from "../../../Form/FormField/InputField";
-import Sidebar from "../../../Sidebar";
-import queryString from "query-string";
-import "./styles.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../../pages/auths/authSlice";
-import ModalSidebar from "../../../ModalSidebar";
-import { setDisplayPlaylist } from "../../../../features/Playlist/displayPlaylistSlice";
+import queryString from 'query-string';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { setDisplayPlaylist } from '../../../../features/Playlist/displayPlaylistSlice';
+import useTotalSongs from '../../../../hooks/useTotalSongs';
+import { logout } from '../../../../pages/auths/authSlice';
+import Button from '../../../Button';
+import InputField from '../../../Form/FormField/InputField';
+import ModalSidebar from '../../../ModalSidebar';
+import Sidebar from '../../../Sidebar';
+import './styles.scss';
 const HeaderTop = () => {
   //************Declaration***********
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(null);
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState('');
 
   //************Initial state*********
 
   //************Side effect***********
-
+  const totalSongs = useTotalSongs();
   //***********Get data from store*****************
   const { isAuthenticate, user } = useSelector((state) => state.auths);
 
@@ -49,6 +50,7 @@ const HeaderTop = () => {
   const handleShowPlaylist = () => {
     dispatch(setDisplayPlaylist(true));
   };
+
   //***********Render UI*****************
   const renderTopRight = () => {
     if (isAuthenticate) {
@@ -68,18 +70,14 @@ const HeaderTop = () => {
       return (
         <div className="account-link-list">
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "account-link-item active" : "account-link-item"
-            }
+            className={({ isActive }) => (isActive ? 'account-link-item active' : 'account-link-item')}
             to="/auths/login"
           >
             Login
           </NavLink>
           <span> / </span>
           <NavLink
-            className={({ isActive }) =>
-              isActive ? "account-link-item active" : "account-link-item"
-            }
+            className={({ isActive }) => (isActive ? 'account-link-item active' : 'account-link-item')}
             to="/auths/register"
           >
             Register
@@ -124,6 +122,7 @@ const HeaderTop = () => {
         <div className="account">{renderTopRight()}</div>
         <div className="mb-icon mb-playlist" onClick={handleShowPlaylist}>
           <i className="fa-solid fa-music"></i>
+          {totalSongs && <p className="mb-playlist-length">{totalSongs}</p>}
         </div>
       </div>
     </div>

@@ -53,10 +53,10 @@
         color: black;
       }
     }
-    .song-card-content {
-    }
-    &-index {
-      color: var(--color-white);
+    .card-song-content {
+      &-index {
+        color: var(--color-white);
+      }
     }
     &-image {
       p.icon.icon--play {

@@ -1,4 +1,4 @@
-@use "../.../../../../scss/responsive" as *;
+@use '../.../../../../scss/responsive' as *;
 
 .player-option {
   display: flex;
@@ -24,6 +24,9 @@
       &:hover {
         color: grey;
       }
+    }
+    &.active {
+      color: var(--color-purple-light);
     }
     &:hover {
       color: var(--color-purple);
@@ -51,6 +54,28 @@
   }
   &-menu {
     margin-left: 20px;
+    position: relative;
     font-size: var(--font-size-hg);
+    .total-songs {
+      position: absolute;
+      font-size: var(--font-size-sm);
+      width: 25px;
+      height: 25px;
+      background: #f27121;
+      top: -10px;
+      left: -13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: bold;
+      animation: animateIconBounce 8s forwards infinite;
+      animation-delay: 3s;
+
+      color: var(--color-white);
+    }
+    &.active {
+      color: var(--color-purple-light);
+    }
   }
 }

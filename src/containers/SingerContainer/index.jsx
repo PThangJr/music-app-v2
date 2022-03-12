@@ -19,7 +19,7 @@ const SingerContainer = (props) => {
     if (loading.isLoading) {
       return (
         <>
-          <Heading>Loading...</Heading>
+          <Heading headingText="Loading..."></Heading>
           <CardSkeletons
             // cols={cols}
             col={col}
@@ -62,7 +62,7 @@ const SingerContainer = (props) => {
           </>
         );
       } else {
-        return <Heading>Không có ca sĩ nào</Heading>;
+        return <Heading headingText="Không có ca sĩ nào"></Heading>;
       }
     }
   };

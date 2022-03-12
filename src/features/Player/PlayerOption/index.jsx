@@ -1,9 +1,10 @@
-import classNames from "classnames";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setDisplayPlaylist } from "../../Playlist/displayPlaylistSlice";
-import { toggleDisplayVideo } from "../../Video/displayVideoSlice";
-import "./styles.scss";
+import classNames from 'classnames';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDisplayPlaylist } from '../../Playlist/displayPlaylistSlice';
+import { toggleDisplayVideo } from '../../Video/displayVideoSlice';
+import './styles.scss';
+import useTotalSongs from '../../../hooks/useTotalSongs';
 
 const PlayerOption = ({ volume = 100, onChangeVolume, onMute }) => {
   //************Declaration***********
@@ -11,10 +12,11 @@ const PlayerOption = ({ volume = 100, onChangeVolume, onMute }) => {
   //************Initial state*********
 
   //************Side effect***********
-
+  const totalSongs = useTotalSongs();
   //***********Get data from store*****************
   const { currentSong } = useSelector((state) => state.playlist);
   const displayPlaylist = useSelector((state) => state.displayPlaylist);
+  const displayVideo = useSelector((state) => state.displayVideo);
   //***********Handle event**************
   const handleToggleModal = () => {
     dispatch(setDisplayPlaylist(!displayPlaylist));
@@ -39,8 +41,9 @@ const PlayerOption = ({ volume = 100, onChangeVolume, onMute }) => {
   return (
     <div className="player-option">
       <div
-        className={classNames("player-option-video", {
+        className={classNames('player-option-video', {
           disabled: !currentSong?.videoId && !currentSong?.karaokeId,
+          active: displayVideo,
         })}
         onClick={handleToggleModalVideo}
       >
@@ -68,8 +71,9 @@ const PlayerOption = ({ volume = 100, onChangeVolume, onMute }) => {
           onChange={handleChangeVolume}
         />
       </div>
-      <div className="player-option-menu" onClick={handleToggleModal}>
+      <div className={classNames('player-option-menu', { active: displayPlaylist })} onClick={handleToggleModal}>
         <i className="fas fa-list-alt"></i>
+        {totalSongs && <p className="total-songs">{totalSongs}</p>}
       </div>
     </div>
   );

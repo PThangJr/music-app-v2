@@ -1,8 +1,9 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchSongsOfAlbum } from "../../features/Playlist/playlistSlice";
-import "./styles.scss";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { setIsPlayingVideo } from '../../features/Player/PlayerControl/playerControlSlice';
+import { fetchSongsOfAlbum } from '../../features/Playlist/playlistSlice';
+import './styles.scss';
 const CardAlbum = ({ album }) => {
   // Declaration
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const CardAlbum = ({ album }) => {
   // Get songs of albums and push them to Playlist
   const handleAddSongsToPlaylist = () => {
     dispatch(fetchSongsOfAlbum({ params: { albums: album._id } }));
+    dispatch(setIsPlayingVideo(false));
   };
 
   // ********** Render **********************
@@ -24,11 +26,7 @@ const CardAlbum = ({ album }) => {
   return (
     <div className="album-card">
       <div className="album-card-image">
-        <img
-          src={album?.image?.secure_url || ""}
-          alt=""
-          className="album-card-image__img"
-        />
+        <img src={album?.image?.secure_url || ''} alt="" className="album-card-image__img" />
         <div className="album-card-image__overlay">
           <p className="icon icon--play" onClick={handleAddSongsToPlaylist}>
             <i className="far fa-play-circle"></i>

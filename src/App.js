@@ -43,7 +43,7 @@ const App = () => {
   //***********Handle event**************
   const handleCloseVideo = () => {
     dispatch(setDisplayVideo(false));
-    dispatch(setIsPlayingVideo(false));
+    // dispatch(setIsPlayingVideo(false));
   };
   //***********Render UI*****************
 

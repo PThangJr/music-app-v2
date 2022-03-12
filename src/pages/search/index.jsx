@@ -1,17 +1,16 @@
-import React, { useEffect, useMemo } from "react";
-import { useLocation } from "react-router-dom";
-import queryString from "query-string";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSearch } from "./searchSlice";
-import SongContainer from "../../containers/SongContainer";
-import AlbumContainer from "../../containers/AlbumContainer";
-import SingerContainer from "../../containers/SingerContainer";
-import Heading from "../../components/Heading";
-import Pagination from "../../components/Pagination";
-import "./styles.scss";
-import Button from "../../components/Button";
-import { playAllSongs } from "../../features/Playlist/playlistSlice";
-import { setIsPlaying } from "../../features/Player/PlayerControl/playerControlSlice";
+import queryString from 'query-string';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import Button from '../../components/Button';
+import Heading from '../../components/Heading';
+import AlbumContainer from '../../containers/AlbumContainer';
+import SingerContainer from '../../containers/SingerContainer';
+import SongContainer from '../../containers/SongContainer';
+import { setIsPlaying } from '../../features/Player/PlayerControl/playerControlSlice';
+import { playAllSongs } from '../../features/Playlist/playlistSlice';
+import { fetchSearch } from './searchSlice';
+import './styles.scss';
 const SearchPage = () => {
   //************Declaration***********
   const dispatch = useDispatch();
@@ -50,10 +49,7 @@ const SearchPage = () => {
   const {
     albums: { data: dataAlbums, totalPages: totalPageAlbums },
     songs: { data: dataSongs, totalPages: totalPageSongs },
-    songsOfSingers: {
-      data: dataSongsOfSingers,
-      totalPages: totalPageSongsOfSingers,
-    },
+    songsOfSingers: { data: dataSongsOfSingers, totalPages: totalPageSongsOfSingers },
     singers: { data: dataSingers, totalPages: totalPageSingers },
     isLoading,
   } = search;
@@ -71,24 +67,20 @@ const SearchPage = () => {
 
   return (
     <div className="search-page">
-      <Heading>Kết quả tìm kiếm</Heading>
+      <Heading headingText="Kết quả tìm kiếm"></Heading>
       <div className="row">
         <div className="col-xl-9">
           <div className="search-item">
             <Heading
+              headingText="Bài hát"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
               }}
             >
-              Bài hát
               {!isLoading && (
-                <Button
-                  className="btn--green btn--play-all"
-                  btnSmall
-                  onClick={handlePlayAllSongs}
-                >
+                <Button className="btn--green btn--play-all" btnSmall onClick={handlePlayAllSongs}>
                   Phát tất cả
                   <i className="fa-solid fa-play"></i>
                 </Button>
@@ -100,11 +92,7 @@ const SearchPage = () => {
               btnPlayAll={false}
               hasHeader={false}
             />
-            <SongContainer
-              songs={dataSongsOfSingers}
-              loading={{ isLoading, totalItems: 3 }}
-              hasHeader={false}
-            />
+            <SongContainer songs={dataSongsOfSingers} loading={{ isLoading, totalItems: 3 }} hasHeader={false} />
             {/* <Pagination
               totalPages={maxPage}
               currentPage={Number(queryParams.s_page)}
@@ -113,11 +101,7 @@ const SearchPage = () => {
             /> */}
           </div>
           <div className="search-item">
-            <SingerContainer
-              singers={dataSingers}
-              loading={{ isLoading, totalItems: 12 }}
-              headingText="Ca sĩ"
-            />
+            <SingerContainer singers={dataSingers} loading={{ isLoading, totalItems: 12 }} headingText="Ca sĩ" />
             {/* <Pagination
               currentPage={Number(queryParams.sg_page)}
               totalPages={totalPageSingers}

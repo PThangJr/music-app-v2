@@ -5,7 +5,7 @@ import CardSong from '../../components/CardSong';
 import CardSongSkeletons from '../../components/CardSong/CardSongSkeletons';
 import Heading from '../../components/Heading';
 import Sort from '../../components/Sort';
-import { setIsPlaying } from '../../features/Player/PlayerControl/playerControlSlice';
+import { setIsPlaying, setIsPlayingVideo } from '../../features/Player/PlayerControl/playerControlSlice';
 import { playAllSongs } from '../../features/Playlist/playlistSlice';
 import './styles.scss';
 const SongContainer = (props) => {
@@ -36,6 +36,7 @@ const SongContainer = (props) => {
     if (songs.length) {
       dispatch(playAllSongs(songs));
       dispatch(setIsPlaying(true));
+      dispatch(setIsPlayingVideo(false));
     }
   };
 
