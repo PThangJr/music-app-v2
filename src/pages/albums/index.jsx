@@ -27,7 +27,7 @@ const AlbumsPage = () => {
 
   const albumsOfAlbumGroups = useSelector((state) => state.albumsOfAlbumGroups);
   return (
-    <div>
+    <>
       {albumGroups.data.map((albumGroup) => {
         return (
           <AlbumGroupContainer
@@ -43,7 +43,7 @@ const AlbumsPage = () => {
           />
         );
       })}
-    </div>
+    </>
   );
 };
 

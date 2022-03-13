@@ -24,7 +24,7 @@ const HomePage = () => {
     );
   }, [dispatch]);
   const pageRandom = useMemo(() => {
-    return Math.random() * 2 + 1;
+    return Math.random() * 3 + 1;
   }, []);
 
   const songsOfRanking = useSelector((state) => state.songsOfRanking);

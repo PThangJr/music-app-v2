@@ -27,6 +27,7 @@ const PlayerControl = ({ volume }) => {
   // InitState
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+
   // const [timeListen, setTimeListen] = useState(0);
 
   const audioRef = useRef();
@@ -79,12 +80,12 @@ const PlayerControl = ({ volume }) => {
   const timeListenRef = useRef();
   useEffect(() => {
     if (isPlaying) {
-      timeListenRef.current = setInterval(() => {
+      timeListenRef.current = setTimeout(() => {
         dispatch(setTimeListen());
       }, 1000);
     }
     return () => {
-      clearInterval(timeListenRef.current);
+      clearTimeout(timeListenRef.current);
     };
   }, [dispatch, isPlaying, timeListen]);
 
@@ -111,25 +112,24 @@ const PlayerControl = ({ volume }) => {
   };
   const handleRepeatSong = () => {
     dispatch(setIsRepeat(!isRepeat));
-    audioRef.current.loop = !isRepeat;
   };
   // Handle audio
   const handleTimeUpdate = (e) => {
     if (isPlaying) {
-      // dispatch(setTimeListen(timeListen + 1));
       setCurrentTime(e.target.currentTime);
-      // handleProgressSong(e.target.currentTime);
     }
   };
-  // console.log(timeListen, currentTime);
   const handleLoadedData = () => {
     setDuration(audioRef.current.duration);
   };
   const handleEndedData = () => {
-    dispatch(setTimeListen(0));
     if (isRepeat) {
-      audioRef.current.loop = isRepeat;
+      audioRef.current.loop = true;
+      if (timeListen >= TIME_LISTEN_TO_UP_VIEWS) {
+        dispatch(setTimeListen(0));
+      }
     } else {
+      dispatch(setTimeListen(0));
       if (
         (songListNext.length > 0 && currentSong._id !== songListNext[songListNext.length - 1]._id) ||
         currentSong._id !== songListPrev[songListPrev.length - 1]._id
@@ -141,7 +141,6 @@ const PlayerControl = ({ volume }) => {
       }
     }
   };
-  // console.log(timeListen);
   const handleNextSong = () => {
     if (
       (songListNext.length > 0 && currentSong._id !== songListNext[songListNext.length - 1]._id) ||

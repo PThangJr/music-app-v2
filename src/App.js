@@ -8,7 +8,6 @@ import Header from './components/Header';
 import ModalSidebar from './components/ModalSidebar';
 import ScrollToTop from './components/ScrollToTop';
 import Player from './features/Player';
-import { setIsPlayingVideo } from './features/Player/PlayerControl/playerControlSlice';
 import Playlist from './features/Playlist';
 import { setDisplayPlaylist } from './features/Playlist/displayPlaylistSlice';
 import Video from './features/Video';
