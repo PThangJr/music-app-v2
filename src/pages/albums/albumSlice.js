@@ -1,16 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import albumAPI from "../../api/albumAPI";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import albumAPI from '../../api/albumAPI';
 const initialState = {
   data: [],
   isLoading: false,
-  message: "",
+  message: '',
   errors: null,
   totalPages: 0,
   totalItems: 0,
   count: 0,
   albumGroup: {},
 };
-export const fetchAlbums = createAsyncThunk("/albums", async (payload) => {
+export const fetchAlbums = createAsyncThunk('/albums', async (payload) => {
   try {
     const response = await albumAPI.getAlbums(payload);
     return response;
@@ -19,7 +19,7 @@ export const fetchAlbums = createAsyncThunk("/albums", async (payload) => {
   }
 });
 const albumSlice = createSlice({
-  name: "albums",
+  name: 'albums',
   initialState,
   extraReducers: {
     [fetchAlbums.pending](state, action) {

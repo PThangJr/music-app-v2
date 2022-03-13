@@ -76,24 +76,36 @@ const HomePage = () => {
       <section className="home-section">
         <div className="row">
           <div className="col-xl-9">
-            {albumGroups.data.map((albumGroup) => {
-              return (
+            {albumGroups.isLoading &&
+              [1, 2, 3, 4].map((alg) => (
                 <AlbumGroupContainer
-                  key={albumGroup._id}
-                  headingText={albumGroup.name}
-                  linkUrl={`/albums/album_groups/${albumGroup.slug}`}
+                  key={`album-groups-${alg}`}
                   loading={{
-                    isLoading: albumsOfAlbumGroups.isLoading,
+                    isLoading: albumGroups.isLoading,
                     totalItems: 6,
                   }}
-                  // col={{ xl: '2_4' }}
                   col={{ xl: '2_4', lg: '2_4', md: '2_4', sm: 4 }}
-                  albums={
-                    albumsOfAlbumGroups.data.find((abg) => Object.keys(abg)[0] === albumGroup.name)?.[albumGroup.name]
-                  }
                 />
-              );
-            })}
+              ))}
+            {!albumGroups.isLoading &&
+              albumGroups.data.map((albumGroup) => {
+                return (
+                  <AlbumGroupContainer
+                    key={albumGroup._id}
+                    headingText={albumGroup.name}
+                    linkUrl={`/albums/album_groups/${albumGroup.slug}`}
+                    loading={{
+                      isLoading: albumsOfAlbumGroups.isLoading,
+                      totalItems: 6,
+                    }}
+                    // col={{ xl: '2_4' }}
+                    col={{ xl: '2_4', lg: '2_4', md: '2_4', sm: 4 }}
+                    albums={
+                      albumsOfAlbumGroups.data.find((abg) => Object.keys(abg)[0] === albumGroup.name)?.[albumGroup.name]
+                    }
+                  />
+                );
+              })}
           </div>
           <div className="col-xl-3">
             <div className="home-section__rank">

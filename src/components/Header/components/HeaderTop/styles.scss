@@ -158,6 +158,7 @@
         font-weight: bold;
         animation: animateIconBounce 10s forwards infinite;
         animation-delay: 3s;
+        user-select: none;
       }
       @include mobile-tablet {
         display: block;

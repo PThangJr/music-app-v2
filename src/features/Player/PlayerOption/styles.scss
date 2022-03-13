@@ -69,8 +69,10 @@
       justify-content: center;
       border-radius: 50%;
       font-weight: bold;
-      animation: animateIconBounce 8s forwards infinite;
+      animation: animateIconBounce 10s forwards infinite;
       animation-delay: 3s;
+      user-select: none;
+      // cursor: pointer;
 
       color: var(--color-white);
     }

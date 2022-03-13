@@ -1,30 +1,21 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import albumGroupAPI from "../../api/albumGroup";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import albumGroupAPI from '../../api/albumGroup';
 const initialState = {
-  data: [
-    {
-      _id: "",
-      name: "",
-      slug: "",
-    },
-  ],
+  data: [],
   isLoading: false,
-  message: "",
+  message: '',
   errors: null,
 };
-export const fetchAlbumGroups = createAsyncThunk(
-  "/album_groups",
-  async (payload, thunkAPI) => {
-    try {
-      const response = await albumGroupAPI.getAlbumGroups(payload);
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+export const fetchAlbumGroups = createAsyncThunk('/album_groups', async (payload, thunkAPI) => {
+  try {
+    const response = await albumGroupAPI.getAlbumGroups(payload);
+    return response;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 const albumGroup = createSlice({
-  name: "album_groups",
+  name: 'album_groups',
   initialState,
   extraReducers: {
     [fetchAlbumGroups.pending](state, action) {

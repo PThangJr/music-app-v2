@@ -23,6 +23,7 @@ import CategoryDetail from './pages/categories/category_detail';
 import FavoritesPage from './pages/favorites';
 import HomePage from './pages/home';
 import RankPage from './pages/rank';
+import RefreshPage from './pages/refresh';
 import SearchPage from './pages/search';
 import SingersPage from './pages/singers';
 import SingerDetail from './pages/singers/singer_detail';
@@ -101,6 +102,7 @@ const App = () => {
             </Route>
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/refresh" element={<RefreshPage />} />
           </Routes>
         </div>
         {/* {currentSong.videoId && <YouTube videoId={currentSong.videoId} />} */}

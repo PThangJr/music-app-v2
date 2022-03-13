@@ -1,39 +1,24 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import songsAPI from "../../api/songAPI";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import songsAPI from '../../api/songAPI';
 
-const initData = [
-  {
-    _id: "",
-    name: "",
-    albums: [],
-    singers: [],
-    authors: [],
-    categories: [],
-    image: { public_id: "", secure_url: "" },
-    audio: { public_id: "", secure_url: "" },
-    status: "",
-  },
-];
+const initData = [];
 const initialState = {
   data: initData,
   isLoading: false,
-  message: "",
+  message: '',
   error: null,
 };
-export const fetchSongOfRanking = createAsyncThunk(
-  "/songs/rank",
-  async (payload) => {
-    try {
-      const response = await songsAPI.getSongsOfRanking(payload);
-      return response;
-    } catch (error) {
-      return error;
-    }
+export const fetchSongOfRanking = createAsyncThunk('/songs/rank', async (payload) => {
+  try {
+    const response = await songsAPI.getSongsOfRanking(payload);
+    return response;
+  } catch (error) {
+    return error;
   }
-);
+});
 
 const songSlice = createSlice({
-  name: "songsByRanking",
+  name: 'songsByRanking',
   initialState,
   extraReducers: {
     [fetchSongOfRanking.pending](state, action) {

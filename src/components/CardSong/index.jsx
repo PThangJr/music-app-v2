@@ -6,6 +6,7 @@ import { setIsPlaying } from '../../features/Player/PlayerControl/playerControlS
 import { setTimeListen } from '../../features/Player/PlayerControl/timeListenSlice';
 import { addSongToSongListNext, chooseSong, setCurrentSong } from '../../features/Playlist/playlistSlice';
 import { addFavoriteSong } from '../../pages/favorites/favoriteSongSlice';
+import convertViews from '../../utils/convertViews';
 import './styles.scss';
 const CardSong = ({
   song = { name: '', _id: '', singers: [] },
@@ -114,7 +115,7 @@ const CardSong = ({
           <p className="icon">
             <i className="fas fa-headphones"></i>
           </p>
-          {song?.views}
+          {convertViews(song?.views)}
         </div>
       )}
       {fullInfo && hasAvatar && (
