@@ -49,7 +49,9 @@
     overflow-y: scroll;
     height: 100vh;
     padding-bottom: 180px;
-
+    @include mobile {
+      padding-bottom: 220px;
+    }
     .song-list {
       position: relative;
       padding: 0 10px;

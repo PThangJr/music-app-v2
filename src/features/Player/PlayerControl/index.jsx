@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { saveAs } from 'file-saver';
 import formatDuration from 'format-duration';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +9,6 @@ import { TIME_LISTEN_TO_UP_VIEWS } from '../../../utils/contanst';
 import { nextSong, prevSong, randomSongListNext } from '../../Playlist/playlistSlice';
 import { setIsPlaying, setIsPlayingVideo, setIsRandom, setIsRepeat } from './playerControlSlice';
 import './styles.scss';
-import { saveAs } from 'file-saver';
 import { setTimeListen } from './timeListenSlice';
 
 const PlayerControl = ({ volume }) => {
@@ -162,6 +162,7 @@ const PlayerControl = ({ volume }) => {
   };
   const handleRandomSongs = () => {
     if (!isRandom) {
+      // dispatch(randomSongListNext());
       dispatch(randomSongListNext());
     }
     dispatch(setIsRandom(!isRandom));

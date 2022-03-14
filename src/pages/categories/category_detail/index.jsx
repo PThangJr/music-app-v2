@@ -1,13 +1,25 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import CardAlbum from "../../../components/CardAlbum";
-import CardSong from "../../../components/CardSong";
-import Heading from "../../../components/Heading";
-import useAlbums from "../../../hooks/useAlbums";
-import useSongs from "../../../hooks/useSongs";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import Heading from '../../../components/Heading';
+import AlbumContainer from '../../../containers/AlbumContainer';
+import SongContainer from '../../../containers/SongContainer';
+import useAlbums from '../../../hooks/useAlbums';
+import useSongs from '../../../hooks/useSongs';
+import { fetchCategoryBySlug } from './categoryDetailSlice';
 
 const CategoryDetail = () => {
-  const { slug, id } = useParams();
+  //************Declaration***********
+  const { slug } = useParams();
+  const dispatch = useDispatch();
+
+  //************Initial state*********
+
+  //************Side effect***********
+  useEffect(() => {
+    dispatch(fetchCategoryBySlug(slug));
+  }, [dispatch, slug]);
+
   const songsOfCategory = useSongs({
     subUrl: `/category/${slug}`,
     params: { limit: 20 },
@@ -17,24 +29,29 @@ const CategoryDetail = () => {
     subUrl: `/category/${slug}`,
     params: { limit: 10 },
   });
+  //***********Get data from store*****************
+  const categoryDetail = useSelector((state) => state.categoryDetail);
+  //***********Handle event**************
+
+  //***********Render UI*****************
+
   return (
     <div className="category-detail-page">
-      <Heading headingText="Thể loại" />
+      <Heading headingText={categoryDetail?.data?.name} />
       <div className="row">
         <div className="col-xl-9">
-          <Heading headingText="Bài hát" />
-          {songsOfCategory.data.map((song) => (
-            <CardSong key={song?._id} song={song} />
-          ))}
+          <SongContainer
+            songs={songsOfCategory.data}
+            loading={{ isLoading: songsOfCategory.isLoading, totalItems: 6 }}
+            headingText="Bài hát"
+          />
         </div>
         <div className="col-xl-3">
-          <div className="row row-cols-2">
-            {albumsOfCategory.data.map((album) => (
-              <div key={album._id} className="col">
-                <CardAlbum album={album} />
-              </div>
-            ))}
-          </div>
+          <AlbumContainer
+            albums={albumsOfCategory.data}
+            loading={{ isLoading: albumsOfCategory.isLoading, totalItems: 6 }}
+            col={{ xl: 6, lg: '2_4', md: '2_4', sm: 3 }}
+          />
         </div>
       </div>
     </div>
