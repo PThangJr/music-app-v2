@@ -1,9 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSongs } from "../pages/songs/songSlice";
-const useSongs = (
-  props = { params: { page: 1, limit: 0, sort: "-createdAt" } }
-) => {
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSongs } from '../pages/songs/songSlice';
+const useSongs = (props = { params: { page: 1, limit: 0, sort: '-createdAt' } }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const payload = {
@@ -48,7 +46,7 @@ const useSongs = (
   //   );
   // }, [dispatch, limit, page, sort]);
   const songs = useSelector((state) => state.songs);
-  return { ...songs };
+  return songs;
 };
 
 export default useSongs;

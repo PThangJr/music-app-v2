@@ -1,12 +1,13 @@
 import queryString from 'query-string';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { setDisplayPlaylist } from '../../../../features/Playlist/displayPlaylistSlice';
 import useTotalSongs from '../../../../hooks/useTotalSongs';
 import { logout } from '../../../../pages/auths/authSlice';
 import Button from '../../../Button';
 import InputField from '../../../Form/FormField/InputField';
+import LazyLoadImage from '../../../LazyLoadImage';
 import ModalSidebar from '../../../ModalSidebar';
 import Sidebar from '../../../Sidebar';
 import './styles.scss';
@@ -92,13 +93,13 @@ const HeaderTop = () => {
         <Sidebar onClose={handleCloseSidebar} />
       </ModalSidebar>
       <div className="header-top-left">
-        <Link to="/" className="logo">
-          <img
-            src="https://creativedesign.rs/cd_app/public/images/products/3313002426527403.jpg"
-            alt="logo"
+        <a href="/" className="logo">
+          <LazyLoadImage
             className="logo__img"
+            alt="logo"
+            src="https://creativedesign.rs/cd_app/public/images/products/3313002426527403.jpg"
           />
-        </Link>
+        </a>
         <div className="mb-icon mb-menu" onClick={handleShowSidebar}>
           <i className="fa-solid fa-bars"></i>
         </div>

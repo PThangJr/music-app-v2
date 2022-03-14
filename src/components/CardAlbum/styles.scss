@@ -3,7 +3,7 @@
   margin: 5px;
   // .album-card-image
   &-image {
-    transition: all 0.5s;
+    transition: hover 0.5s;
     border-radius: 12px;
     -webkit-border-radius: 12px;
     overflow: hidden;
@@ -22,8 +22,9 @@
       width: 100%;
       max-height: 300px;
       object-fit: fill;
-      transition: all 0.5s;
+      transition: 0.5s;
       display: block;
+      border-radius: 12px;
     }
     &__overlay {
       position: absolute;

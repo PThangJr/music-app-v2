@@ -1,6 +1,13 @@
 .card-singer {
   margin-bottom: 20px;
   // .card-singer--circle
+  &:hover {
+    .card-singer-link {
+      &-image__img {
+        transform: scale(1.2);
+      }
+    }
+  }
   &--circle {
     .card-singer__img {
       border-radius: 50%;
@@ -11,10 +18,14 @@
     display: block;
     overflow: hidden;
     // .card-singer-link__img
-    &__img {
+    &-image {
+      overflow: hidden;
       border-radius: 14px;
-      width: 100%;
-      object-fit: fill;
+      &__img {
+        border-radius: 14px;
+        width: 100%;
+        object-fit: fill;
+      }
     }
     // .card-singer-link__name
     &__name {

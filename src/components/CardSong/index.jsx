@@ -6,7 +6,9 @@ import { setIsPlaying } from '../../features/Player/PlayerControl/playerControlS
 import { setTimeListen } from '../../features/Player/PlayerControl/timeListenSlice';
 import { addSongToSongListNext, chooseSong, setCurrentSong } from '../../features/Playlist/playlistSlice';
 import { addFavoriteSong } from '../../pages/favorites/favoriteSongSlice';
+import { FALL_BACK_IMAGE_SONG } from '../../utils/contanst';
 import convertViews from '../../utils/convertViews';
+import LazyLoadImage from '../LazyLoadImage';
 import './styles.scss';
 const CardSong = ({
   song = { name: '', _id: '', singers: [] },
@@ -25,9 +27,7 @@ const CardSong = ({
   const { currentSong } = useSelector((state) => state.playlist);
 
   // Fallback image when link image has error
-  const fallbackImage = (e) => {
-    // e.target.src = "http://placehold.it/60x60";
-  };
+
   // Check song is current song or not
   const isCurrentSong = currentSong?._id === song?._id;
   const isFavorite = favoriteSongs.find((s) => s._id === song?._id);
@@ -70,10 +70,9 @@ const CardSong = ({
         )}
 
         <div className="card-song-content-image">
-          <img
-            src={song?.image?.secure_url || ''}
-            onError={fallbackImage}
-            alt=""
+          <LazyLoadImage
+            src={song?.image?.secure_url || FALL_BACK_IMAGE_SONG}
+            alt={song?.image?.public_id}
             className="card-song-content-image__img"
           />
           {!isCurrentSong && (

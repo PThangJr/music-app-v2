@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import ButtonLoadMore from "../../components/Button/ButtonLoadMore";
-import CategoryContainer from "../../containers/CategoryContainer";
-import SongContainer from "../../containers/SongContainer";
-import useCategories from "../../hooks/useCategories";
-import useSongs from "../../hooks/useSongs";
-import queryString from "query-string";
-import "./styles.scss";
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import ButtonLoadMore from '../../components/Button/ButtonLoadMore';
+import CategoryContainer from '../../containers/CategoryContainer';
+import SongContainer from '../../containers/SongContainer';
+import useCategories from '../../hooks/useCategories';
+import useSongs from '../../hooks/useSongs';
+import queryString from 'query-string';
+import './styles.scss';
 const RankPage = () => {
   const [totalItems, setTotalItems] = useState(10);
   const location = useLocation();
@@ -14,7 +14,7 @@ const RankPage = () => {
   const songsOfRanking = useSongs({
     params: {
       limit: limit <= 100 && limit > 0 ? limit : totalItems,
-      sort: "-views",
+      sort: '-views',
     },
   });
   const categories = useCategories({ params: { limit: 10 } });
@@ -33,12 +33,8 @@ const RankPage = () => {
             headingText="Bảng xếp hạng"
             ranking
           />
-          {totalItems <= 100 && (
-            <ButtonLoadMore
-              isLoading={songsOfRanking.isLoading}
-              onClick={handleSetTotalItems}
-              center
-            ></ButtonLoadMore>
+          {categories.data?.length && totalItems <= 100 && (
+            <ButtonLoadMore isLoading={songsOfRanking.isLoading} onClick={handleSetTotalItems} center></ButtonLoadMore>
           )}
         </div>
         <div className="col-xl-3">

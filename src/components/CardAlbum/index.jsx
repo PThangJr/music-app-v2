@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setIsPlayingVideo } from '../../features/Player/PlayerControl/playerControlSlice';
 import { fetchSongsOfAlbum } from '../../features/Playlist/playlistSlice';
+import { FALL_BACK_IMAGE_ALBUM } from '../../utils/contanst';
+import LazyLoadImage from '../LazyLoadImage';
 import './styles.scss';
-const CardAlbum = ({ album }) => {
+const CardAlbum = ({ album, isLazyLoading = true }) => {
   // Declaration
   const dispatch = useDispatch();
 
@@ -26,7 +28,16 @@ const CardAlbum = ({ album }) => {
   return (
     <div className="album-card">
       <div className="album-card-image">
-        <img src={album?.image?.secure_url || ''} alt="" className="album-card-image__img" />
+        {isLazyLoading && (
+          <LazyLoadImage
+            src={album?.image?.secure_url || FALL_BACK_IMAGE_ALBUM}
+            alt={album?.image?.secure_url}
+            className="album-card-image__img"
+            isLazyLoading={isLazyLoading}
+          />
+        )}
+
+        {!isLazyLoading && <img src={album?.image?.secure_url || ''} alt="" className="album-card-image__img" />}
         <div className="album-card-image__overlay">
           <p className="icon icon--play" onClick={handleAddSongsToPlaylist}>
             <i className="far fa-play-circle"></i>

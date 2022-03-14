@@ -37,19 +37,19 @@ const CategoryDetail = () => {
 
   return (
     <div className="category-detail-page">
-      <Heading headingText={categoryDetail?.data?.name} />
+      <Heading headingText={`Thể loại : ${categoryDetail?.data?.name}`} textAlign="center" />
       <div className="row">
         <div className="col-xl-9">
           <SongContainer
             songs={songsOfCategory.data}
-            loading={{ isLoading: songsOfCategory.isLoading, totalItems: 6 }}
+            loading={{ isLoading: songsOfCategory.isLoading, totalItems: 12 }}
             headingText="Bài hát"
           />
         </div>
         <div className="col-xl-3">
           <AlbumContainer
             albums={albumsOfCategory.data}
-            loading={{ isLoading: albumsOfCategory.isLoading, totalItems: 6 }}
+            loading={{ isLoading: albumsOfCategory.isLoading, totalItems: 8 }}
             col={{ xl: 6, lg: '2_4', md: '2_4', sm: 3 }}
           />
         </div>

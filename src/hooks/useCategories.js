@@ -14,8 +14,8 @@ const useCategories = (props) => {
       })
     );
   }, [dispatch, props?.params?.limit, props?.params?.page, props?.params?.sort]);
-  const categories = useSelector((state) => state.categories);
-  return { ...categories };
+  const categories = useSelector((state) => state.categories) || { data: [] };
+  return categories;
 };
 
 export default useCategories;

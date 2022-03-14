@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAlbums } from "../pages/albums/albumSlice";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAlbums } from '../pages/albums/albumSlice';
 const useAlbums = (props = { params: {} }) => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,7 +27,7 @@ const useAlbums = (props = { params: {} }) => {
     props?.subUrl,
   ]);
   const albums = useSelector((state) => state.albums);
-  return { ...albums };
+  return albums;
 };
 
 export default useAlbums;

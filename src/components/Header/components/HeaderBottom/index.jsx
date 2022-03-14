@@ -1,8 +1,8 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { toggleDisplayVideo } from "../../../../features/Video/displayVideoSlice";
-import "./styles.scss";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { toggleDisplayVideo } from '../../../../features/Video/displayVideoSlice';
+import './styles.scss';
 const HeaderBottom = () => {
   //************Declaration***********
   const dispatch = useDispatch();
@@ -21,43 +21,45 @@ const HeaderBottom = () => {
   };
 
   //***********Render UI*****************
-
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
     <div className="header-bottom">
       <ul className="navbar">
         <li className="navbar-item">
-          <NavLink className="navbar-item__link" to="/">
+          <NavLink onClick={handleScrollToTop} className="navbar-item__link" to="/">
             Trang chủ
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink className="navbar-item__link" to="/bang-xep-hang">
+          <NavLink onClick={handleScrollToTop} className="navbar-item__link" to="/bang-xep-hang">
             Bảng xếp hạng
           </NavLink>
         </li>
 
         <li className="navbar-item">
-          <NavLink className="navbar-item__link" to="/bai-hat">
+          <NavLink onClick={handleScrollToTop} className="navbar-item__link" to="/bai-hat">
             Bài hát
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink className="navbar-item__link" to="/the-loai">
+          <NavLink onClick={handleScrollToTop} className="navbar-item__link" to="/the-loai">
             Thể loại
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink className="navbar-item__link" to="/ca-si">
+          <NavLink onClick={handleScrollToTop} className="navbar-item__link" to="/ca-si">
             Ca sĩ
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink className="navbar-item__link" to="/albums">
+          <NavLink onClick={handleScrollToTop} className="navbar-item__link" to="/albums">
             Albums
           </NavLink>
         </li>
         <li className="navbar-item">
-          <NavLink className="navbar-item__link" to="/favorites">
+          <NavLink onClick={handleScrollToTop} className="navbar-item__link" to="/favorites">
             Favorites
           </NavLink>
         </li>

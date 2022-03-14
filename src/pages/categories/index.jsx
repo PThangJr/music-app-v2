@@ -1,9 +1,9 @@
-import React from "react";
-import CategoryContainer from "../../containers/CategoryContainer";
-import useCategories from "../../hooks/useCategories";
-import "./styles.scss";
+import React from 'react';
+import CategoryContainer from '../../containers/CategoryContainer';
+import useCategories from '../../hooks/useCategories';
+import './styles.scss';
 const CategoriesPage = () => {
-  const categories = useCategories();
+  const categories = useCategories({ params: { sort: 'slug' } });
   return (
     <div className="categories-page">
       <CategoryContainer
@@ -11,7 +11,7 @@ const CategoriesPage = () => {
         categories={categories.data}
         loading={{ isLoading: categories.isLoading, totalItems: 15 }}
         // col={}
-        col={{ xl: "2_4", lg: "2_4", md: 3, sm: 4 }}
+        col={{ xl: '2_4', lg: '2_4', md: 3, sm: 4 }}
       />
     </div>
   );

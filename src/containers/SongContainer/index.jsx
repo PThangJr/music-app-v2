@@ -5,7 +5,7 @@ import CardSong from '../../components/CardSong';
 import CardSongSkeletons from '../../components/CardSong/CardSongSkeletons';
 import Heading from '../../components/Heading';
 import Sort from '../../components/Sort';
-import { setIsPlaying, setIsPlayingVideo } from '../../features/Player/PlayerControl/playerControlSlice';
+import { setIsPlaying, setIsPlayingVideo, setIsRandom } from '../../features/Player/PlayerControl/playerControlSlice';
 import { playAllSongs } from '../../features/Playlist/playlistSlice';
 import './styles.scss';
 const SongContainer = (props) => {
@@ -30,6 +30,7 @@ const SongContainer = (props) => {
   //************Side effect***********
 
   //***********Get data from store*****************
+  // const { isRandom } = useSelector((state) => state.playerControls);
 
   //***********Handle event**************
   const handlePlayAllSongs = () => {
@@ -37,6 +38,7 @@ const SongContainer = (props) => {
       dispatch(playAllSongs(songs));
       dispatch(setIsPlaying(true));
       dispatch(setIsPlayingVideo(false));
+      dispatch(setIsRandom(false));
     }
   };
 

@@ -33,6 +33,7 @@ const Trending = () => {
       speed: 1000,
       centerMode: false,
       autoplaySpeed: 6000,
+      // lazyload: true,
       responsive: [
         {
           breakpoint: 1024,
@@ -85,7 +86,7 @@ const Trending = () => {
     } else {
       return albums?.data?.map((album) => (
         <div className="trending-item" key={album?._id}>
-          <CardAlbum album={album} />
+          <CardAlbum album={album} isLazyLoading={false} />
         </div>
       ));
     }
