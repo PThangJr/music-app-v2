@@ -94,7 +94,7 @@ const CardSong = ({
         <div className="card-song-info">
           <p className="card-song-info__name">{song?.name}</p>
           <div className="card-song-info__singers">
-            {song?.singers.map((singer, index) => (
+            {song?.singers?.map((singer, index) => (
               <React.Fragment key={singer?._id}>
                 <Link
                   className={classNames('card-song-info__singers-link', `card-song-info__singers-link--${index}`)}

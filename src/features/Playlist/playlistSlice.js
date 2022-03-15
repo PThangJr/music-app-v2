@@ -194,7 +194,7 @@ const playlistSlice = createSlice({
         currentSong: { ...data.currentSong },
       };
       const [firstSong, ...otherSongs] = action.payload;
-      newData.songListPrev = [firstSong];
+      newData.songListPrev = firstSong ? [firstSong] : [];
       newData.currentSong = firstSong;
       newData.songListNext = otherSongs;
       songListPrevStorage.set(newData.songListPrev);

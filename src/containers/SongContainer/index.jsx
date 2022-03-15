@@ -53,10 +53,12 @@ const SongContainer = (props) => {
             </Heading>
           </div>
 
-          <Button className="btn--green btn--play-all" btnSmall onClick={handlePlayAllSongs}>
-            Phát tất cả
-            <i className="fa-solid fa-play"></i>
-          </Button>
+          {songs.length && (
+            <Button className="btn--green btn--play-all" btnSmall onClick={handlePlayAllSongs}>
+              Phát tất cả
+              <i className="fa-solid fa-play"></i>
+            </Button>
+          )}
         </header>
       );
     }

@@ -79,7 +79,7 @@ const SearchPage = () => {
                 justifyContent: 'space-between',
               }}
             >
-              {!isLoading && (
+              {!isLoading && dataSongs.length && (
                 <Button className="btn--green btn--play-all" btnSmall onClick={handlePlayAllSongs}>
                   Phát tất cả
                   <i className="fa-solid fa-play"></i>

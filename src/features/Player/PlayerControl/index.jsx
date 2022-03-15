@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { saveAs } from 'file-saver';
 import formatDuration from 'format-duration';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavoriteSong } from '../../../pages/favorites/favoriteSongSlice';
 import { fetchUpdateViewsOfSong } from '../../../pages/songs/songSlice';
@@ -170,7 +170,7 @@ const PlayerControl = ({ volume }) => {
   const handleFavoriteSong = () => {
     dispatch(addFavoriteSong(currentSong));
   };
-  const handleDownloadSong = () => {
+  const handleDownloadSong = useCallback(() => {
     if (currentSong?.audio?.secure_url) {
       const singerNames = currentSong.singers
         .reduce((acc, cur, index) => {
@@ -182,7 +182,7 @@ const PlayerControl = ({ volume }) => {
         .replaceAll('.', '');
       saveAs(currentSong.audio.secure_url, `${currentSong.name} - ${singerNames}`);
     }
-  };
+  }, [currentSong?.audio?.secure_url, currentSong?.name, currentSong?.singers]);
   return (
     <div className="player-control">
       <div className="player-control-action">
