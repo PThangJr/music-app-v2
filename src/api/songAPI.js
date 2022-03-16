@@ -11,7 +11,7 @@ const songsAPI = {
   },
   getSongsOfRanking(payload) {
     let { params = {} } = payload;
-    // params = { sort: '-views', limit: params.limit || 100, page: params.page || 1 };
+    params = { sort: '-views slug', limit: params.limit || 100, page: params.page || 1 };
     const url = '/songs';
     return axiosClient.get(url, { params });
   },

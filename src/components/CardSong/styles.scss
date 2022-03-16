@@ -56,6 +56,24 @@
     .card-song-content {
       &-index {
         color: var(--color-white);
+        @include mobile-tablet {
+          color: var(--color-text);
+        }
+        &--1 {
+          @include mobile-tablet {
+            color: #f02f19;
+          }
+        }
+        &--2 {
+          @include mobile-tablet {
+            color: #d35400;
+          }
+        }
+        &--3 {
+          @include mobile-tablet {
+            color: rgb(0, 122, 112);
+          }
+        }
       }
     }
     &-image {
