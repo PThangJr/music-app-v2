@@ -26,7 +26,7 @@ const useSongsOfRanking = (props = { params: { page: 1, limit: 0, sort: '-create
     props?.params?.sort,
     props?.subUrl,
   ]);
-  const songsOfRanking = useSelector((state) => state.songsOfRanking) || { data: [] };
+  const songsOfRanking = useSelector((state) => state.songsOfRanking) || { data: [], totalPages: 1 };
   return songsOfRanking;
 };
 

@@ -10,7 +10,7 @@
   margin: 10px 0;
   @include mobile {
     margin: 0;
-    padding: 8px;
+    padding: 5px;
   }
   &.active {
     background-color: var(--color-grey-4);
@@ -74,12 +74,13 @@
       font-size: var(--font-size-hg);
       font-weight: 600;
       width: 40px;
-      min-width: 40px;
       text-align: center;
-      @include mobile {
-        display: none;
-        // width: 30px;
-        // font-size: var(--font-size-xl);
+      @include mobile-small {
+        // display: none;
+        width: 25px;
+        text-align: left;
+
+        font-size: var(--font-size-xl);
       }
       @for $i from 1 through 3 {
         &--#{$i} {

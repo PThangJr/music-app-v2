@@ -5,6 +5,7 @@ const initData = [];
 const initialState = {
   data: initData,
   isLoading: false,
+  isLoadingMore: false,
   message: '',
   error: null,
   totalPages: 1,
@@ -43,12 +44,16 @@ const songSlice = createSlice({
     [fetchSongOfRanking.rejected](state, action) {
       state.isLoading = false;
     },
-    [fetchMoreSongsOfRanking.pending](state, action) {},
+    [fetchMoreSongsOfRanking.pending](state, action) {
+      state.isLoadingMore = true;
+    },
     [fetchMoreSongsOfRanking.fulfilled](state, action) {
       state.data = state.data.concat(action.payload.data);
+      state.isLoadingMore = false;
       state.totalPages = action.payload.totalPages;
     },
     [fetchMoreSongsOfRanking.rejected](state, action) {
+      state.isLoadingMore = false;
       state.isLoading = false;
     },
   },
