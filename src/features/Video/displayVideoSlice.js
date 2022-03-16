@@ -1,7 +1,7 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const displayVideoSlice = createSlice({
-  name: "displayVideo",
+  name: 'displayVideo',
   initialState: null,
   reducers: {
     setDisplayVideo(state, action) {
@@ -13,5 +13,4 @@ const displayVideoSlice = createSlice({
   },
 });
 export default displayVideoSlice.reducer;
-export const { setDisplayVideo, toggleDisplayVideo } =
-  displayVideoSlice.actions;
+export const { setDisplayVideo, toggleDisplayVideo } = displayVideoSlice.actions;

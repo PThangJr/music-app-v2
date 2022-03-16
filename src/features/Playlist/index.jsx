@@ -14,8 +14,7 @@ const Playlist = ({ className }) => {
   // console.log(playlist);
 
   const { songListPrev = [], songListNext = [], isLoading } = playlist;
-  // console.log(songsOfRanking);
-  // {...provided?.dragHandleProps}
+
   const handleDragEnd = (result) => {
     const { source, destination } = result;
     //
