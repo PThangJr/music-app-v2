@@ -21,7 +21,7 @@ const CardSinger = (props) => {
         <div className="card-singer-link-image">
           <LazyLoadImage
             src={singer.avatar?.secure_url}
-            alt={singer.avatar?.public_id}
+            alt={singer.avatar?.public_id || singer.avatar?.secure_url}
             className="card-singer-link-image__img"
           />
         </div>

@@ -32,6 +32,7 @@ const CardSong = ({
   const isCurrentSong = currentSong?._id === song?._id;
   const isFavorite = favoriteSongs.find((s) => s._id === song?._id);
 
+  // const hasSongInPlaylist = [...songListPrev, ...songListNext].find((s) => s._id === song._id);
   //*****Handle************************ */
   // Handle when click to one song
   const handleChooseSong = () => {
@@ -56,6 +57,8 @@ const CardSong = ({
   const handleAddNextSongToSongListNext = () => {
     dispatch(addSongToSongListNext(song));
   };
+  // console.log('render');
+  // const handleRemoveSongFromPlaylist = () => {};
   return (
     <div className={classNames('card-song', { active: isCurrentSong })} style={style}>
       <div className="card-song-content" onClick={handleChooseSong}>
@@ -72,7 +75,7 @@ const CardSong = ({
         <div className="card-song-content-image">
           <LazyLoadImage
             src={song?.image?.secure_url || FALL_BACK_IMAGE_SONG}
-            alt={song?.image?.public_id}
+            alt={song?.image?.public_id || FALL_BACK_IMAGE_SONG}
             className="card-song-content-image__img"
           />
           {!isCurrentSong && (
@@ -122,9 +125,15 @@ const CardSong = ({
           <p className={classNames('icon icon--cursor', { active: isFavorite })} onClick={handleAddFavorite}>
             <i className="fas fa-heart"></i>
           </p>
+
           <p className="icon icon--cursor" onClick={handleAddNextSongToSongListNext}>
             <i className="fas fa-angle-double-right"></i>
           </p>
+          {/* {hasSongInPlaylist && (
+            <p className="icon icon--cursor" onClick={handleRemoveSongFromPlaylist}>
+              <i className="fa-solid fa-angles-left"></i>
+            </p>
+          )} */}
         </div>
       )}
     </div>

@@ -31,7 +31,7 @@ const CardAlbum = ({ album, isLazyLoading = true }) => {
         {isLazyLoading && (
           <LazyLoadImage
             src={album?.image?.secure_url || FALL_BACK_IMAGE_ALBUM}
-            alt={album?.image?.public_id}
+            alt={album?.image?.public_id || FALL_BACK_IMAGE_ALBUM}
             className="album-card-image__img"
             // isLazyLoading={isLazyLoading}
           />

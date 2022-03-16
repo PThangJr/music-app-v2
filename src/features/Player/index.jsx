@@ -1,20 +1,25 @@
-import React, { useRef, useState } from "react";
-import PlayerControl from "./PlayerControl";
-import PlayerInfo from "./PlayerInfo";
-import PlayerOption from "./PlayerOption";
-import "./styles.scss";
+import React, { useRef, useState } from 'react';
+import PlayerControl from './PlayerControl';
+import PlayerInfo from './PlayerInfo';
+import PlayerOption from './PlayerOption';
+import './styles.scss';
 const Player = () => {
   const [volume, setVolume] = useState(100);
-  const volumeRef = useRef();
+  const volumeRef = useRef(0);
   const handleChangeValueVolume = (e) => {
-    setVolume(e.target.value);
+    setVolume(Number(e.target.value));
   };
   const handleToggleMute = (status) => {
+    // console.log(status);
     if (!status) {
-      volumeRef.current = volume;
+      volumeRef.current = Number(volume);
       setVolume(0);
     } else {
-      setVolume(volumeRef.current);
+      if (volumeRef.current === 0) {
+        setVolume(100);
+      } else {
+        setVolume(volumeRef.current);
+      }
     }
   };
   return (
@@ -22,11 +27,7 @@ const Player = () => {
       <div className="container">
         <PlayerInfo />
         <PlayerControl volume={volume} />
-        <PlayerOption
-          onChangeVolume={handleChangeValueVolume}
-          volume={volume}
-          onMute={handleToggleMute}
-        />
+        <PlayerOption onChangeVolume={handleChangeValueVolume} volume={volume} onMute={handleToggleMute} />
       </div>
     </div>
   );

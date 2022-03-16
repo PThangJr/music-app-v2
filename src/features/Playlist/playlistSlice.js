@@ -133,11 +133,11 @@ const playlistSlice = createSlice({
       if (!songFoundInSongListNext && !songFoundInSongListPrev) {
         newData.songListNext.push(action.payload);
         toast.success(`🎶 Thêm bài hát "${action.payload.name}" vào Danh sách phát`, {
-          autoClose: 1500,
+          autoClose: 1100,
         });
       } else {
         toast.warning(`🎶 Bài hát "${action.payload.name}" đã có trong Danh sách phát`, {
-          autoClose: 1500,
+          autoClose: 1100,
         });
       }
       songListPrevStorage.set(newData.songListPrev);
@@ -176,7 +176,7 @@ const playlistSlice = createSlice({
       };
       const songPrev = newData.songListPrev.splice(newData.songListPrev.length - 1, 1);
       newData.currentSong = newData.songListPrev[newData.songListPrev.length - 1];
-      console.log(songPrev);
+      // console.log(songPrev);
       newData.songListNext = [...songPrev, ...newData.songListNext];
       songListPrevStorage.set(newData.songListPrev);
       songListNextStorage.set(newData.songListNext);

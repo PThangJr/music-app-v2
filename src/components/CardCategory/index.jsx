@@ -13,7 +13,7 @@ const CardCategory = (props) => {
       <div className="card-category-image">
         <LazyLoadImage
           src={category?.image?.secure_url}
-          alt={category?.image?.public_id}
+          alt={category?.image?.public_id || category?.image?.secure_url}
           className="card-category-image__img"
         />
         {/* <img
