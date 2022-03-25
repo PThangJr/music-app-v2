@@ -1,14 +1,9 @@
-import PropTypes from "prop-types";
-import queryString from "query-string";
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "./styles.scss";
-const Pagination = ({
-  currentPage,
-  totalPages,
-  pageRangeDisplay,
-  formatPage = "page",
-}) => {
+import PropTypes from 'prop-types';
+import queryString from 'query-string';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import './styles.scss';
+const Pagination = ({ currentPage, totalPages, pageRangeDisplay, formatPage = 'page' }) => {
   // console.log(currentPage, pageRangeDisplay, totalPages);
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,16 +18,12 @@ const Pagination = ({
   // console.log('pagination', useLocation());
   useEffect(() => {
     if (totalPages) {
-      if (
-        currentPage >= pageRangeDisplay &&
-        currentPage > totalPages - pageRangeDisplay + 1
-      ) {
+      if (currentPage >= pageRangeDisplay && currentPage > totalPages - pageRangeDisplay + 1) {
         // console.log('TH1');
         setStartPage(totalPages - pageRangeDisplay);
         setEndPage(totalPages);
       } else if (
-        (currentPage > 2 ||
-          (currentPage > 2 && currentPage === totalPages - pageRangeDisplay)) &&
+        (currentPage > 2 || (currentPage > 2 && currentPage === totalPages - pageRangeDisplay)) &&
         totalPages > pageRangeDisplay
       ) {
         // console.log('TH2');
@@ -71,9 +62,7 @@ const Pagination = ({
                 return handlePagination(currentPage - 1);
               }
             }}
-            className={
-              currentPage === 1 ? "previous-page page-active" : "previous-page"
-            }
+            className={currentPage === 1 ? 'previous-page page-active' : 'previous-page'}
           >
             <i className="fas fa-chevron-left"></i>
           </div>
@@ -83,11 +72,7 @@ const Pagination = ({
                 onClick={() => handlePagination(item)}
                 key={index}
                 // to={`?page=${item}`}
-                className={
-                  currentPage === item
-                    ? "pagination-item pagination-item--active"
-                    : "pagination-item"
-                }
+                className={currentPage === item ? 'pagination-item pagination-item--active' : 'pagination-item'}
               >
                 {item}
               </div>
@@ -100,9 +85,7 @@ const Pagination = ({
               }
             }}
             // to={`?page=${currentPage === totalPages ? totalPages : currentPage + 1}`}
-            className={
-              currentPage === totalPages ? "next-page page-active" : "next-page"
-            }
+            className={currentPage === totalPages ? 'next-page page-active' : 'next-page'}
           >
             <i className="fas fa-chevron-right"></i>
           </div>

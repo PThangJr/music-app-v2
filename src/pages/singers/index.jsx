@@ -7,7 +7,7 @@ import './styles.scss';
 const SingersPage = () => {
   const { limit, page, sort } = useQuery();
   const singers = useSingers({
-    params: { limit: limit || 18, page: page || 1, sort: sort || 'slug' },
+    params: { limit: limit || 24, page: page || 1, sort: sort || 'slug' },
   });
   return (
     <div className="singer-page">

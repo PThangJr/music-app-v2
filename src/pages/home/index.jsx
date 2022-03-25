@@ -28,7 +28,7 @@ const HomePage = () => {
   }, []);
 
   const songsOfRanking = useSelector((state) => state.songsOfRanking);
-  const songsNew = useSongs({ params: { limit: 13, sort: '-createdAt' } });
+  const songsNew = useSongs({ params: { limit: 14, sort: '-createdAt' } });
   const categories = useCategories({ params: { limit: 12, sort: 'slug' } });
   const singers = useSingers({
     params: { limit: 12, page: pageRandom, sort: '-createdAt' },

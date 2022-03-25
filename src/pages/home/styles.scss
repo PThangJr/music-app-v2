@@ -16,7 +16,7 @@
       }
       .card-song {
         @include desktop {
-          padding: 8px 5px;
+          padding: 5px 5px;
           justify-content: space-between;
         }
         &-content {
@@ -25,8 +25,16 @@
           }
           &-index {
             @include desktop {
-              width: 33px;
-              font-size: var(--font-size-hg);
+              width: 30px;
+              font-size: var(--font-size-xl);
+              text-align: left;
+            }
+            &--1,
+            &--2,
+            &--3 {
+              @include desktop {
+                font-size: var(--font-size-hg);
+              }
             }
             @include mobile {
               width: 25px;
