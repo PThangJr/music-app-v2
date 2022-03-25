@@ -3,8 +3,18 @@
   section.home-section {
     margin: 40px 0;
   }
+
   //Custom css home ranking
   .home-section__rank {
+    .card-song-skeletons {
+      .skeleton {
+        &-button {
+          @include desktop {
+            display: none;
+          }
+        }
+      }
+    }
     margin-top: 20px;
     .song-container {
       &-header {

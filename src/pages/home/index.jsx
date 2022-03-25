@@ -59,7 +59,7 @@ const HomePage = () => {
               headingText="Bài hát mới"
               linkUrl={`/bai-hat?sort=-createdAt`}
               songs={songsNew.data}
-              loading={{ isLoading: songsNew.isLoading, totalItems: 12 }}
+              loading={{ isLoading: songsNew.isLoading, totalItems: 15 }}
             />
           </div>
           <div className="col-xl-3">
