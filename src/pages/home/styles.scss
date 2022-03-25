@@ -3,6 +3,12 @@
   section.home-section {
     margin: 40px 0;
   }
+  .home-section__album {
+    margin-bottom: 20px;
+    @include desktop {
+      margin: 0;
+    }
+  }
 
   //Custom css home ranking
   .home-section__rank {
@@ -15,7 +21,6 @@
         }
       }
     }
-    margin-top: 20px;
     .song-container {
       &-header {
         button {
@@ -37,7 +42,7 @@
             @include desktop {
               width: 30px;
               font-size: var(--font-size-xl);
-              text-align: left;
+              text-align: center;
             }
             &--1,
             &--2,

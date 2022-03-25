@@ -60,7 +60,7 @@ const playlistSlice = createSlice({
         } else {
           const songRemoved = newData[source.droppableId].splice(source.index, 1);
           toast.error(`🎶 Xoá bài hát "${songRemoved[0].name}" khỏi Danh sách phát`, {
-            autoClose: 2000,
+            autoClose: 600,
           });
         }
       } else {
@@ -133,11 +133,11 @@ const playlistSlice = createSlice({
       if (!songFoundInSongListNext && !songFoundInSongListPrev) {
         newData.songListNext.push(action.payload);
         toast.success(`🎶 Thêm bài hát "${action.payload.name}" vào Danh sách phát`, {
-          autoClose: 1100,
+          autoClose: 600,
         });
       } else {
         toast.warning(`🎶 Bài hát "${action.payload.name}" đã có trong Danh sách phát`, {
-          autoClose: 1100,
+          autoClose: 600,
         });
       }
       songListPrevStorage.set(newData.songListPrev);

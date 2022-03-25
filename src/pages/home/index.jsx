@@ -19,7 +19,7 @@ const HomePage = () => {
     // Get songs sort by views
     dispatch(
       fetchSongOfRanking({
-        params: { limit: 15 },
+        params: { limit: 16 },
       })
     );
   }, [dispatch]);
@@ -28,7 +28,7 @@ const HomePage = () => {
   }, []);
 
   const songsOfRanking = useSelector((state) => state.songsOfRanking);
-  const songsNew = useSongs({ params: { limit: 14, sort: '-createdAt' } });
+  const songsNew = useSongs({ params: { limit: 15, sort: '-createdAt' } });
   const categories = useCategories({ params: { limit: 12, sort: 'slug' } });
   const singers = useSingers({
     params: { limit: 12, page: pageRandom, sort: '-createdAt' },
@@ -76,36 +76,40 @@ const HomePage = () => {
       <section className="home-section">
         <div className="row">
           <div className="col-xl-9">
-            {albumGroups.isLoading &&
-              [1, 2, 3, 4].map((alg) => (
-                <AlbumGroupContainer
-                  key={`album-groups-${alg}`}
-                  loading={{
-                    isLoading: albumGroups.isLoading,
-                    totalItems: 6,
-                  }}
-                  col={{ xl: '2_4', lg: '2_4', md: '2_4', sm: 4 }}
-                />
-              ))}
-            {!albumGroups.isLoading &&
-              albumGroups.data.map((albumGroup) => {
-                return (
+            <div className="home-section__album">
+              {albumGroups.isLoading &&
+                [1, 2, 3, 4].map((alg) => (
                   <AlbumGroupContainer
-                    key={albumGroup._id}
-                    headingText={albumGroup.name}
-                    linkUrl={`/albums/album_groups/${albumGroup.slug}`}
+                    key={`album-groups-${alg}`}
                     loading={{
-                      isLoading: albumsOfAlbumGroups.isLoading,
+                      isLoading: albumGroups.isLoading,
                       totalItems: 6,
                     }}
-                    // col={{ xl: '2_4' }}
                     col={{ xl: '2_4', lg: '2_4', md: '2_4', sm: 4 }}
-                    albums={
-                      albumsOfAlbumGroups.data.find((abg) => Object.keys(abg)[0] === albumGroup.name)?.[albumGroup.name]
-                    }
                   />
-                );
-              })}
+                ))}
+              {!albumGroups.isLoading &&
+                albumGroups.data.map((albumGroup) => {
+                  return (
+                    <AlbumGroupContainer
+                      key={albumGroup._id}
+                      headingText={albumGroup.name}
+                      linkUrl={`/albums/album_groups/${albumGroup.slug}`}
+                      loading={{
+                        isLoading: albumsOfAlbumGroups.isLoading,
+                        totalItems: 6,
+                      }}
+                      // col={{ xl: '2_4' }}
+                      col={{ xl: '2_4', lg: '2_4', md: '2_4', sm: 4 }}
+                      albums={
+                        albumsOfAlbumGroups.data.find((abg) => Object.keys(abg)[0] === albumGroup.name)?.[
+                          albumGroup.name
+                        ]
+                      }
+                    />
+                  );
+                })}
+            </div>
           </div>
           <div className="col-xl-3">
             <div className="home-section__rank">
@@ -113,7 +117,7 @@ const HomePage = () => {
                 headingText="Bảng xếp hạng"
                 linkUrl={`/bang-xep-hang`}
                 songs={songsOfRanking.data}
-                loading={{ isLoading: songsOfRanking.isLoading, totalItems: 12 }}
+                loading={{ isLoading: songsOfRanking.isLoading, totalItems: 16 }}
                 ranking
               />
             </div>
@@ -125,7 +129,7 @@ const HomePage = () => {
           headingText="Ca sĩ"
           linkUrl="/ca-si"
           singers={singers.data}
-          loading={{ isLoading: singers.isLoading, totalItems: 10 }}
+          loading={{ isLoading: singers.isLoading, totalItems: 12 }}
           // cols={{ xl: 2, lg: 6, md: 4, sm: 3, xs: 2 }}
           col={{ xl: 2, lg: 3, md: 3, sm: 4, xs: 6 }}
         />

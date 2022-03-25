@@ -16,10 +16,10 @@ const Header = () => {
     (e) => {
       const window = e.currentTarget;
       if (offsetY > window.scrollY) {
-        // console.log("scrolling up", offsetY);
+        // console.log('scrolling up', offsetY, window.scrollY);
         setIsScroll(false);
       } else if (offsetY > 150 && offsetY < window.scrollY) {
-        // console.log("scrolling down", offsetY);
+        // console.log('scrolling down', offsetY, window.scrollY);
         setIsScroll(true);
       }
       setOffsetY(window.scrollY);

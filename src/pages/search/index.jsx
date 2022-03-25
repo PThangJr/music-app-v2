@@ -64,7 +64,6 @@ const SearchPage = () => {
   //   return Math.max(totalPageSongs, totalPageSongsOfSingers);
   // }, [totalPageSongs, totalPageSongsOfSingers]);
   //***********Render UI*****************
-
   return (
     <div className="search-page">
       <Heading headingText="Kết quả tìm kiếm"></Heading>
@@ -79,7 +78,7 @@ const SearchPage = () => {
                 justifyContent: 'space-between',
               }}
             >
-              {!isLoading && dataSongs.length && (
+              {!isLoading && (dataSongs.length > 0 || dataSongsOfSingers.length > 0) && (
                 <Button className="btn--green btn--play-all" btnSmall onClick={handlePlayAllSongs}>
                   Phát tất cả
                   <i className="fa-solid fa-play"></i>

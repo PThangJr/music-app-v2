@@ -64,16 +64,18 @@ const HeaderBottom = () => {
           </NavLink>
         </li>
       </ul>
-      <div className="current-song" onClick={handleToggleVideo}>
-        <p className="current-song__name">{currentSong?.name}</p>
-        <span>-</span>
-        {currentSong?.singers?.map((singer, index) => (
-          <p key={singer?._id}>
-            {index > 0 && <span>ft</span>}
-            {singer?.name}
-          </p>
-        ))}
-      </div>
+      {currentSong?._id && (
+        <div className="current-song" onClick={handleToggleVideo}>
+          <p className="current-song__name">{currentSong?.name}</p>
+          <span>-</span>
+          {currentSong?.singers?.map((singer, index) => (
+            <p key={singer?._id}>
+              {index > 0 && <span>ft</span>}
+              {singer?.name}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

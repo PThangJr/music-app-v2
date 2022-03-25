@@ -7,9 +7,13 @@
   justify-content: space-between;
   border-radius: 8px;
   overflow: hidden;
-  margin: 10px 0;
+  // margin: 8px 0;
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+  // box-shadow: 0px 0px 0.5px var(--rgba-bsd);
   @include mobile {
-    margin: 0;
+    margin-bottom: 8px;
     padding: 5px;
   }
   &.active {
@@ -18,9 +22,6 @@
     &:hover {
       background-color: var(--color-grey-4);
       color: var(--color-white);
-      a {
-        color: var(--color-white);
-      }
     }
     a {
       color: var(--color-white);
@@ -93,6 +94,7 @@
       font-weight: 600;
       width: 40px;
       text-align: center;
+      display: inline-block;
       @include mobile-small {
         // display: none;
         width: 25px;

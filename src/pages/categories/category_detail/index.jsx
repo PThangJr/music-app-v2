@@ -54,6 +54,7 @@ const CategoryDetail = () => {
         </div>
         <div className="col-xl-3">
           <AlbumContainer
+            headingText="Albums"
             albums={albumsOfCategory.data}
             loading={{ isLoading: albumsOfCategory.isLoading, totalItems: 12 }}
             col={{ xl: 6, lg: '2_4', md: '2_4', sm: 3 }}

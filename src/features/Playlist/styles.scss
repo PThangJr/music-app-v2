@@ -9,6 +9,12 @@
 }
 .playlist {
   .card-song {
+    &:hover {
+      color: var(--color-white);
+      a {
+        color: var(--color-white);
+      }
+    }
     &__singers {
       &-link {
         @include mobile-tablet {

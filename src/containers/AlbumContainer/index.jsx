@@ -24,7 +24,7 @@ const AlbumContainer = (props) => {
     } else {
       return (
         <>
-          <Heading linkUrl={linkUrl} headingText={headingText}></Heading>
+          {albums.length > 0 && <Heading linkUrl={linkUrl} headingText={headingText}></Heading>}
           <div
             className={classNames(
               'row '
