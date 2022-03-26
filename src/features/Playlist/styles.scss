@@ -12,9 +12,16 @@
     &-content {
       margin-right: 40px;
     }
+    a {
+      // color: white;
+      @include mobile-tablet {
+        color: white;
+      }
+    }
     &:hover {
       color: var(--color-white);
     }
+
     &__singers {
       &-link {
         @include mobile-tablet {

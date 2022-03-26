@@ -51,6 +51,7 @@
 
       @include mobile-tablet {
         background-color: transparent;
+        color: var(--color-black);
       }
     }
     .card-song-content {
