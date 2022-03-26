@@ -22,6 +22,9 @@
     &:hover {
       background-color: var(--color-grey-4);
       color: var(--color-white);
+      a {
+        color: var(--color-white);
+      }
     }
     a {
       color: var(--color-white);
