@@ -59,6 +59,7 @@ const CardSong = ({
   };
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(`http://localhost:3000/bai-hat/${song?.slug}`);
+    // console.log(navigator);
   };
   // console.log('render');
   // const handleRemoveSongFromPlaylist = () => {};

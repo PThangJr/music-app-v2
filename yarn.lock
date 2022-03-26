@@ -1370,6 +1370,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@mebtte/react-media-session@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@mebtte/react-media-session/-/react-media-session-1.1.1.tgz#f84b589fca40729ce716b10b94e23ed06c1e286d"
+  integrity sha512-9HirkOXAHQbfgSoI8fJmp7R954jtpluvyvu2FDiqEik40d6f9qVVzupL06zkUcV/0HIuqTbPMkcP8O5kI+gpfA==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"

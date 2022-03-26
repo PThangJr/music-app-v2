@@ -28,6 +28,7 @@ import SearchPage from './pages/search';
 import SingersPage from './pages/singers';
 import SingerDetail from './pages/singers/singer_detail';
 import SongsPage from './pages/songs';
+import SongDetailPage from './pages/songs/song_detail';
 import './scss/base.scss';
 import './scss/grid.scss';
 const App = () => {
@@ -84,7 +85,10 @@ const App = () => {
               ></Route>
             </Route>
 
-            <Route path="/bai-hat" element={<SongsPage />}></Route>
+            <Route path="/bai-hat">
+              <Route index element={<SongsPage />} />
+              <Route path=":slug" element={<SongDetailPage />} />
+            </Route>
             <Route path="/bang-xep-hang" element={<RankPage />}></Route>
 
             <Route path="/ca-si">

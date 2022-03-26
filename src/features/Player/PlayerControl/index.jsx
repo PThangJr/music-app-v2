@@ -7,6 +7,7 @@ import { addFavoriteSong } from '../../../pages/favorites/favoriteSongSlice';
 import { fetchUpdateViewsOfSong } from '../../../pages/songs/songSlice';
 import { TIME_LISTEN_TO_UP_VIEWS } from '../../../utils/contanst';
 import { nextSong, prevSong, randomSongListNext } from '../../Playlist/playlistSlice';
+import MediaSessionAPI from '../MediaSessionAPI';
 import { setIsPlaying, setIsPlayingVideo, setIsRandom, setIsRepeat } from './playerControlSlice';
 import './styles.scss';
 import { setTimeListen } from './timeListenSlice';
@@ -89,14 +90,14 @@ const PlayerControl = ({ volume }) => {
     };
   }, [dispatch, isPlaying, timeListen]);
 
-  const handlePauseSong = () => {
+  const handlePauseSong = useCallback(() => {
     dispatch(setIsPlaying(false));
-  };
-  const handlePlaySong = () => {
+  }, [dispatch]);
+  const handlePlaySong = useCallback(() => {
     if (hasCurrentSong && !isPlayingVideo) {
       dispatch(setIsPlaying(true));
     }
-  };
+  }, [dispatch, hasCurrentSong, isPlayingVideo]);
   const handleSeekSong = (e) => {
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
@@ -141,7 +142,7 @@ const PlayerControl = ({ volume }) => {
       }
     }
   };
-  const handleNextSong = () => {
+  const handleNextSong = useCallback(() => {
     if (
       (songListNext.length > 0 && currentSong._id !== songListNext[songListNext.length - 1]._id) ||
       currentSong._id !== songListPrev[songListPrev.length - 1]._id
@@ -151,15 +152,15 @@ const PlayerControl = ({ volume }) => {
       dispatch(setIsPlaying(true));
       dispatch(nextSong());
     }
-  };
-  const handlePrevSong = () => {
+  }, [currentSong._id, dispatch, songListNext, songListPrev]);
+  const handlePrevSong = useCallback(() => {
     if (!(currentSong._id === songListPrev[0]._id)) {
       dispatch(setIsPlayingVideo(false));
       dispatch(setTimeListen(0));
       dispatch(setIsPlaying(true));
       dispatch(prevSong());
     }
-  };
+  }, [currentSong._id, dispatch, songListPrev]);
   const handleRandomSongs = () => {
     if (!isRandom) {
       // dispatch(randomSongListNext());
@@ -185,8 +186,31 @@ const PlayerControl = ({ volume }) => {
       saveAs(currentSong.audio.secure_url, `${currentSong.name} - ${singerNames}`);
     }
   }, [currentSong?.audio?.secure_url, currentSong?.name, currentSong?.singers]);
+
+  // Media session API
+  // useMediaSession({
+  //   title: currentSong.name || '',
+  //   artist: currentSong?.singers?.[0]?.name || '',
+  //   artwork: [
+  //     {
+  //       src: currentSong.image.secure_url,
+  //       sizes: '256x256,384x384,512x512',
+  //       type: 'image/jpeg',
+  //     },
+  //   ],
+  //   onPlay: handlePlaySong,
+  //   onPause: handlePauseSong,
+  // });
+
   return (
     <div className="player-control">
+      {/* Media session */}
+      <MediaSessionAPI
+        handlePlaySong={handlePlaySong}
+        handlePauseSong={handlePauseSong}
+        handleNextSong={handleNextSong}
+        handlePrevSong={handlePrevSong}
+      />
       <div className="player-control-action">
         <button
           disabled={!hasCurrentSong}
