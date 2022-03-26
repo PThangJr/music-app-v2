@@ -1,15 +1,14 @@
-import classnames from "classnames";
-import React from "react";
-import "./styles.scss";
+import classnames from 'classnames';
+import React from 'react';
+import './styles.scss';
 const Button = (props) => {
   const {
-    value = "",
+    value = '',
     children,
-    type = "default",
-    style = {},
+    type = 'default',
     fullWidth,
     disabled = false,
-    className = "",
+    className = '',
     onClick = () => {},
     styles = {},
   } = props;
@@ -18,9 +17,9 @@ const Button = (props) => {
       type={type}
       style={styles}
       className={classnames(
-        "btn",
-        { "btn--full-width": fullWidth },
-        { "btn--disabled": disabled },
+        'btn',
+        { 'btn--full-width': fullWidth },
+        { 'btn--progress': disabled },
         { [className]: className }
       )}
       disabled={disabled}

@@ -57,6 +57,9 @@ const CardSong = ({
   const handleAddNextSongToSongListNext = () => {
     dispatch(addSongToSongListNext(song));
   };
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(`http://localhost:3000/bai-hat/${song?.slug}`);
+  };
   // console.log('render');
   // const handleRemoveSongFromPlaylist = () => {};
   return (
@@ -113,7 +116,7 @@ const CardSong = ({
         </div>
       </div>
       {fullInfo && (
-        <div className="card-song-views">
+        <div className="card-song-views" onClick={handleCopyToClipboard}>
           <p className="icon">
             <i className="fas fa-headphones"></i>
           </p>

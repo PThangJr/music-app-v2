@@ -1,22 +1,24 @@
 import classNames from 'classnames';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import useTotalSongs from '../../../hooks/useTotalSongs';
 import { setDisplayPlaylist } from '../../Playlist/displayPlaylistSlice';
 import { toggleDisplayVideo } from '../../Video/displayVideoSlice';
 import './styles.scss';
-import useTotalSongs from '../../../hooks/useTotalSongs';
 
 const PlayerOption = ({ volume = 100, onChangeVolume, onMute }) => {
   //************Declaration***********
   const dispatch = useDispatch();
   //************Initial state*********
 
-  //************Side effect***********
-  const totalSongs = useTotalSongs();
   //***********Get data from store*****************
   const { currentSong } = useSelector((state) => state.playlist);
   const displayPlaylist = useSelector((state) => state.displayPlaylist);
   const displayVideo = useSelector((state) => state.displayVideo);
+  //************Side effect***********
+
+  const totalSongs = useTotalSongs();
+
   //***********Handle event**************
   const handleToggleModal = () => {
     dispatch(setDisplayPlaylist(!displayPlaylist));

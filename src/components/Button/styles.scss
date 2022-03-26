@@ -36,9 +36,16 @@
     background-color: var(--color-red);
     color: var(--color-white);
   }
-  &--disabled {
+  &--progress {
     background-color: grey !important;
     color: black;
     cursor: progress;
+  }
+  &--disabled {
+    cursor: not-allowed;
+    color: var(--color-grey-1) !important;
+    &:hover {
+      color: var(--color-grey-1) !important;
+    }
   }
 }

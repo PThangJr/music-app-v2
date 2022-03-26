@@ -9,13 +9,13 @@ import './styles.scss';
 const SongsPage = () => {
   const { limit, page, sort } = useQuery();
   const pageRandom = useMemo(() => {
-    return Math.random() * 2 + 1;
+    return Math.floor(Math.random() * 2 + 1);
   }, []);
   const { data, isLoading, totalPages } = useSongs({
-    params: { limit: limit || 20, page: page || 1, sort: sort || 'slug' },
+    params: { limit: limit || 21, page: page || 1, sort: sort || 'slug' },
   });
   const albums = useAlbums({
-    params: { limit: 10, page: pageRandom, sort: '-createdAt' },
+    params: { limit: 14, page: pageRandom, sort: '-createdAt' },
   });
 
   return (
@@ -30,7 +30,7 @@ const SongsPage = () => {
           <AlbumContainer
             headingText="Album gợi ý"
             albums={albums.data}
-            loading={{ isLoading: albums.isLoading, totalItems: 10 }}
+            loading={{ isLoading: albums.isLoading, totalItems: 14 }}
             col={{ xl: 6, lg: '2_4', md: 3, sm: 4, xs: 2 }}
           />
         </div>

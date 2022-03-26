@@ -14,7 +14,7 @@ const ButtonLoadMore = ({ onClick, center = false, disabled = false, isLoading =
       onClick={handleClick}
       className={classNames('btn btn--load-more', {
         'btn--center': center,
-        'btn--disabled': isLoading,
+        'btn--progress': isLoading,
       })}
       style={style}
       disabled={isLoading}

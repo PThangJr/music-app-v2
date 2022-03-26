@@ -75,6 +75,9 @@ span {
     cursor: pointer;
   }
 }
+img {
+  user-select: none;
+}
 
 .wrapper.dark-theme {
   --background-page: #181818;

@@ -59,14 +59,15 @@ const RankPage = () => {
   //***********Get data from store*****************
   //***********Handle event**************
   const handleSetTotalItems = () => {
-    if (page < songsOfRanking.totalPages) {
-      dispatch(fetchMoreSongsOfRanking({ params: { sort: '-views slug', limit: 10, page } }));
-      setPage(page + 1);
+    if (page <= songsOfRanking.totalPages) {
+      // dispatch(fetchMoreSongsOfRanking({ params: { sort: '-views slug', limit: 10, page } }));
+      setPage((prevState) => prevState + 1);
     }
   };
 
   // console.log(page, songsOfRanking.totalPages);
   //***********Render UI*****************
+
   return (
     <div className="rank-page">
       <div className="row">
@@ -77,16 +78,17 @@ const RankPage = () => {
             headingText="Bảng xếp hạng"
             ranking
           />
-          {
+          {songsOfRanking.data.length < 100 && (
             <ButtonLoadMore
               isLoading={songsOfRanking.isLoadingMore}
               onClick={handleSetTotalItems}
               center
               ref={btnLoadMoreRef}
               disabled={page >= songsOfRanking.totalPages}
-              style={{ display: page >= songsOfRanking.totalPages ? 'none' : '' }}
+              style={{ marginTop: '50px' }}
+              // style={{ display: page >= songsOfRanking.totalPages ? 'none' : '' }}
             ></ButtonLoadMore>
-          }
+          )}
         </div>
         <div className="col-xl-3">
           <CategoryContainer

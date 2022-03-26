@@ -1,5 +1,14 @@
 .card-song-skeletons {
   &-item {
+    &:nth-child(2n) {
+      .skeleton-info__name {
+        width: 250px;
+      }
+      .skeleton-info__singer {
+        width: 150px;
+      }
+    }
+
     // height: 55px;
     width: 100%;
     background: var(--color-grey-3);
@@ -13,44 +22,45 @@
       display: flex;
       align-items: center;
       padding: 5px 10px;
+
       &__image {
         width: 50px;
         height: 50px;
         background: var(--color-grey-2);
         border-radius: 6px;
         margin-right: 20px;
-        animation: animateOpacity 2s ease-in-out infinite;
+        animation: animateOpacity 2.5s ease-in-out infinite;
       }
       &-info {
         flex: 1;
         &__name {
-          width: 60%;
+          width: 70%;
           min-width: 150px;
           max-width: 300px;
           height: 20px;
           background: var(--color-grey-2);
           margin-bottom: 8px;
           border-radius: 5px;
-          animation: animateOpacity 2s ease-in-out infinite;
+          animation: animateOpacity 2.5s ease-in-out infinite;
         }
         &__singer {
           width: 80px;
           height: 12px;
           background: var(--color-grey-2);
           border-radius: 5px;
-          animation: animateOpacity 2s ease-in-out infinite;
+          animation: animateOpacity 2.5s ease-in-out infinite;
         }
       }
       &-button {
         display: flex;
         align-items: center;
         &__item {
-          width: 25px;
-          height: 25px;
-          border-radius: 5px;
+          width: 30px;
+          height: 30px;
+          border-radius: 8px;
           background: var(--color-grey-2);
           margin: 0 5px;
-          animation: animateOpacity 2s ease-in-out infinite;
+          animation: animateOpacity 2.5s ease-in-out infinite;
         }
       }
     }
@@ -86,7 +96,16 @@
 }
 @keyframes animateOpacity {
   0% {
-    opacity: 0.6;
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.5;
   }
   100% {
     opacity: 1;

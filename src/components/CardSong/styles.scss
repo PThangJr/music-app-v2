@@ -44,14 +44,13 @@
 
     @include mobile-tablet {
       background: none;
-      color: black;
+      color: var(--color-black);
     }
     a {
       color: var(--color-white);
 
       @include mobile-tablet {
         background-color: transparent;
-        color: black;
       }
     }
     .card-song-content {
@@ -208,6 +207,8 @@
     display: flex;
     align-items: center;
     flex: 0.7;
+    cursor: default;
+    user-select: none;
     @include mobile-tablet {
       flex: 0.4;
     }

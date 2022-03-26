@@ -168,7 +168,9 @@ const PlayerControl = ({ volume }) => {
     dispatch(setIsRandom(!isRandom));
   };
   const handleFavoriteSong = () => {
-    dispatch(addFavoriteSong(currentSong));
+    if (hasCurrentSong) {
+      dispatch(addFavoriteSong(currentSong));
+    }
   };
   const handleDownloadSong = useCallback(() => {
     if (currentSong?.audio?.secure_url) {
@@ -186,13 +188,27 @@ const PlayerControl = ({ volume }) => {
   return (
     <div className="player-control">
       <div className="player-control-action">
-        <button className={classNames('btn btn--heart', { active: isFavoriteSong })} onClick={handleFavoriteSong}>
+        <button
+          disabled={!hasCurrentSong}
+          className={classNames('btn btn--heart', { active: isFavoriteSong, 'btn--disabled': !hasCurrentSong })}
+          onClick={handleFavoriteSong}
+        >
           <i className="fas fa-heart"></i>
         </button>
-        <button className={classNames('btn btn--random', { active: isRandom })} onClick={handleRandomSongs}>
+        <button
+          disabled={!hasCurrentSong}
+          className={classNames('btn btn--random', { active: isRandom, 'btn--disabled': !hasCurrentSong })}
+          onClick={handleRandomSongs}
+        >
           <i className="fas fa-random"></i>
         </button>
-        <button className="btn btn--prev" onClick={handlePrevSong}>
+        <button
+          disabled={!hasCurrentSong}
+          className={classNames('btn btn--prev', {
+            'btn--disabled': !hasCurrentSong || songListPrev?.[0]?._id === currentSong?._id,
+          })}
+          onClick={handlePrevSong}
+        >
           <i className="fas fa-step-backward"></i>
         </button>
         {isPlaying ? (
@@ -200,12 +216,20 @@ const PlayerControl = ({ volume }) => {
             <i className="far fa-pause-circle"></i>
           </button>
         ) : (
-          <button className="btn btn--play" onClick={handlePlaySong}>
+          <button
+            disabled={!hasCurrentSong}
+            className={classNames('btn btn--play', { 'btn--disabled': !hasCurrentSong })}
+            onClick={handlePlaySong}
+          >
             <i className="far fa-play-circle"></i>
           </button>
         )}
 
-        <button className="btn btn--next" onClick={handleNextSong}>
+        <button
+          disabled={!hasCurrentSong}
+          className={classNames('btn btn--next', { 'btn--disabled': !hasCurrentSong || songListNext?.length === 0 })}
+          onClick={handleNextSong}
+        >
           <i className="fas fa-step-forward"></i>
         </button>
         <button className={classNames('btn btn--repeat', { active: isRepeat })} onClick={handleRepeatSong}>
@@ -217,12 +241,20 @@ const PlayerControl = ({ volume }) => {
           </a>
         ) : (
         )} */}
-        <button onClick={handleDownloadSong} className="btn btn--download">
+        <button
+          disabled={!hasCurrentSong}
+          onClick={handleDownloadSong}
+          className={classNames('btn btn--download', { 'btn--disabled': !hasCurrentSong })}
+        >
           <i className="fas fa-download"></i>
         </button>
       </div>
       <div className="player-control-progress">
-        <button className={classNames('btn btn--heart', { active: isFavoriteSong })} onClick={handleFavoriteSong}>
+        <button
+          disabled={!hasCurrentSong}
+          className={classNames('btn btn--heart', { active: isFavoriteSong, 'btn--disabled': !hasCurrentSong })}
+          onClick={handleFavoriteSong}
+        >
           <i className="fas fa-heart"></i>
         </button>
         <span className="player-control-progress__time player-control-progress__time--start ">
@@ -249,7 +281,11 @@ const PlayerControl = ({ volume }) => {
           </a>
         ) : (
         )} */}
-        <button onClick={handleDownloadSong} className="btn btn--download">
+        <button
+          disabled={!hasCurrentSong}
+          onClick={handleDownloadSong}
+          className={classNames('btn btn--download', { 'btn--disabled': !hasCurrentSong })}
+        >
           <i className="fas fa-download"></i>
         </button>
         <audio

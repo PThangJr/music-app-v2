@@ -9,11 +9,11 @@
 }
 .playlist {
   .card-song {
+    &-content {
+      margin-right: 40px;
+    }
     &:hover {
       color: var(--color-white);
-      a {
-        color: var(--color-white);
-      }
     }
     &__singers {
       &-link {
@@ -40,6 +40,9 @@
   }
   a {
     color: var(--color-white);
+    span {
+      color: var(--color-white);
+    }
   }
   &__heading {
     border-bottom: 1px solid grey;
@@ -52,18 +55,27 @@
     // overflow-y: scroll;
   }
   &-main {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 100vh;
     padding-bottom: 180px;
+    &::-webkit-scrollbar {
+      width: 3px;
+      height: 8px;
+      // background: red;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgb(253, 27, 223);
+      // width: 1px;
+    }
     @include mobile {
       padding-bottom: 220px;
     }
     .song-list {
       position: relative;
       padding: 0 10px;
-      @include mobile {
-        padding: 0 6px;
-      }
+      // @include mobile {
+      //   padding: 0 6px;
+      // }
       &--next {
         border-bottom: 1px solid transparent;
       }

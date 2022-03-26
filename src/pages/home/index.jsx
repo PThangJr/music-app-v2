@@ -24,7 +24,7 @@ const HomePage = () => {
     );
   }, [dispatch]);
   const pageRandom = useMemo(() => {
-    return Math.random() * 3 + 1;
+    return Math.floor(Math.random() * 4 + 1);
   }, []);
 
   const songsOfRanking = useSelector((state) => state.songsOfRanking);
@@ -133,12 +133,6 @@ const HomePage = () => {
           // cols={{ xl: 2, lg: 6, md: 4, sm: 3, xs: 2 }}
           col={{ xl: 2, lg: 3, md: 3, sm: 4, xs: 6 }}
         />
-        <div className="row">
-          <div className="col-xl-9"></div>
-          <div className="col-xl-3">
-            <div className="row"></div>
-          </div>
-        </div>
       </section>
     </div>
   );
