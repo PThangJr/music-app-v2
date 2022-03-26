@@ -187,21 +187,6 @@ const PlayerControl = ({ volume }) => {
     }
   }, [currentSong?.audio?.secure_url, currentSong?.name, currentSong?.singers]);
 
-  // Media session API
-  // useMediaSession({
-  //   title: currentSong.name || '',
-  //   artist: currentSong?.singers?.[0]?.name || '',
-  //   artwork: [
-  //     {
-  //       src: currentSong.image.secure_url,
-  //       sizes: '256x256,384x384,512x512',
-  //       type: 'image/jpeg',
-  //     },
-  //   ],
-  //   onPlay: handlePlaySong,
-  //   onPause: handlePauseSong,
-  // });
-
   return (
     <div className="player-control">
       {/* Media session */}

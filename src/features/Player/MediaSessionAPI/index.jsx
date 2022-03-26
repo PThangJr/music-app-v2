@@ -7,7 +7,7 @@ const MediaSessionAPI = (props) => {
   const { handlePlaySong, handlePauseSong, handleNextSong, handlePrevSong } = props;
   const { currentSong } = useSelector((state) => state.playlist);
   // console.log('renderSingers');
-  console.log(currentSong);
+  // console.log(currentSong);
   const renderSingerName = () => {
     if (currentSong?.singers?.length) {
       const result = currentSong.singers.map((singer) => singer.name).join(' ft ');
@@ -16,28 +16,31 @@ const MediaSessionAPI = (props) => {
       return 'Đang cập nhật...';
     }
   };
-
   return (
-    <MediaSession
-      title={currentSong?.name || 'Bài hát'}
-      artist={renderSingerName()}
-      album={'Website design by PThangJr'}
-      artwork={[
-        {
-          src:
-            currentSong?.image?.secure_url ||
-            'https://cdn0.iconfinder.com/data/icons/internet-2020/1080/Applemusicandroid-512.png',
-          // sizes: '256x256,384x384,512x512',
-          // type: 'image/jpg',
-        },
-      ]}
-      onPlay={handlePlaySong}
-      onPause={handlePauseSong}
-      // // // onSeekBackward={onBackward10s}
-      // // // onSeekForward={onForward10s}
-      onPreviousTrack={handlePrevSong}
-      onNextTrack={handleNextSong}
-    />
+    <>
+      {currentSong._id && (
+        <MediaSession
+          title={currentSong?.name || 'Bài hát'}
+          artist={renderSingerName()}
+          album={'Website design by PThangJr'}
+          artwork={[
+            {
+              src:
+                currentSong?.image?.secure_url ||
+                'https://cdn0.iconfinder.com/data/icons/internet-2020/1080/Applemusicandroid-512.png',
+              // sizes: '256x256,384x384,512x512',
+              // type: 'image/jpg',
+            },
+          ]}
+          onPlay={handlePlaySong}
+          onPause={handlePauseSong}
+          // // // onSeekBackward={onBackward10s}
+          // // // onSeekForward={onForward10s}
+          onPreviousTrack={handlePrevSong}
+          onNextTrack={handleNextSong}
+        />
+      )}
+    </>
   );
 };
 
