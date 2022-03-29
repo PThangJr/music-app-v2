@@ -23,7 +23,7 @@ const SongsPage = () => {
       <div className="row">
         <div className="col-xl-9">
           <SongsContainer headingText="Tất cả bài hát" songs={data} loading={{ isLoading, totalItems: 20 }} sorting>
-            <Pagination totalItems={5} currentPage={page} totalPages={totalPages} />
+            <Pagination totalItems={5} pageRangeDisplay={5} currentPage={page} totalPages={totalPages} />
           </SongsContainer>
         </div>
         <div className="col-xl-3">

@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './styles.scss';
-const Pagination = ({ currentPage, totalPages, pageRangeDisplay, formatPage = 'page' }) => {
+const Pagination = ({ currentPage, totalPages, pageRangeDisplay = 5, formatPage = 'page' }) => {
   // console.log(currentPage, pageRangeDisplay, totalPages);
   const navigate = useNavigate();
   const location = useLocation();
