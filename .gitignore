@@ -9,7 +9,7 @@
 yarn.lock
 # testing
 /coverage
-
+note.txt
 # production
 /build
 

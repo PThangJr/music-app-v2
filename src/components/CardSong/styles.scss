@@ -54,7 +54,12 @@
     }
     a {
       color: var(--color-white);
-
+      span {
+        color: var(--color-white);
+        @include mobile-tablet {
+          color: var(--color-black);
+        }
+      }
       @include mobile-tablet {
         background-color: transparent;
         color: var(--color-black);
