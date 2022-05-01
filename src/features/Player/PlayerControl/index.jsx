@@ -99,6 +99,7 @@ const PlayerControl = ({ volume }) => {
     }
   }, [dispatch, hasCurrentSong, isPlayingVideo]);
   const handleSeekSong = (e) => {
+    if (!currentSong._id) return;
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
     }
