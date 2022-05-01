@@ -1,34 +1,33 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import * as yup from "yup";
-import Button from "../../../components/Button";
-import InputField from "../../../components/Form/FormField/InputField";
-import LoadingDotCircle from "../../../components/Loading/LoadingDotCircle";
-import { fetchLogin } from "../authSlice";
-import "./styles.scss";
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import Button from '../../../components/Button';
+import InputField from '../../../components/Form/FormField/InputField';
+import LoadingDotCircle from '../../../components/Loading/LoadingDotCircle';
+import { fetchLogin } from '../authSlice';
+import './styles.scss';
 const LoginPage = () => {
   const schema = yup.object().shape({
-    email: yup.string().required("Email không được để trống!").email(),
+    email: yup.string().required('Email không được để trống!').email(),
     password: yup
       .string()
-      .required("Password không được để trống!")
+      .required('Password không được để trống!')
       .trim()
-      .min(6, "Password không được ngắn hơn 6 ký tự")
-      .max(12, "Password không được dài hơn 12 ký tự"),
+      .min(6, 'Password không được ngắn hơn 6 ký tự')
+      .max(12, 'Password không được dài hơn 12 ký tự'),
   });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [data, setData] = useState({ email: "", password: "" });
+  const [data, setData] = useState({ email: '', password: '' });
   const auths = useSelector((state) => state.auths);
   const { isAuthenticate, isLoading, errors, message } = auths;
 
   const handleChangeInput = (values) => {
     if (errors?.message) {
-      // dispatch(clearErrors());
     }
     setData({ ...data, ...values });
   };
@@ -43,20 +42,13 @@ const LoginPage = () => {
   //React hook form
   const form = useForm({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
-    reValidateMode: "onChange",
+    reValidateMode: 'onChange',
     resolver: yupResolver(schema),
   });
   const { register, formState } = form;
-  // const [isLogin, setIsLogin] = useState(false);
-
-  // useEffect(() => {
-  //   if (isLogin) {
-  //     navigate("/");
-  //   }
-  // }, [isLogin, navigate]);
 
   const handleLogin = (data) => {
     dispatch(fetchLogin(data));
@@ -75,7 +67,7 @@ const LoginPage = () => {
         onChange={handleChangeInput}
         disabled={isLoading}
         error={formState.errors?.email?.message || errors?.message?.email}
-        register={register("email", {
+        register={register('email', {
           // onBlur: (e) => console.log(e),
         })}
       ></InputField>
@@ -89,20 +81,21 @@ const LoginPage = () => {
         onChange={handleChangeInput}
         disabled={isLoading}
         error={formState.errors?.password?.message || errors?.message?.password}
-        register={register("password")}
+        register={register('password')}
 
         // error="Mật khẩu không đúng"
       ></InputField>
-      <Button className="btn--green" fullWidth disabled={isLoading}>
+      <Button className="btn--green btn--auth " fullWidth disabled={isLoading}>
         {isLoading && <LoadingDotCircle />}
         Đăng nhập
       </Button>
+      <Button className="btn--auth btn--google" fullWidth>
+        <i className="fa-brands fa-google"></i>
+        Đăng nhập bằng Google
+      </Button>
       <div className="auths-form-note">
         (*) Nếu bạn chưa có tài khoản ?
-        <Link
-          className="auths-form-note__link"
-          to={!isLoading && "/auths/register"}
-        >
+        <Link className="auths-form-note__link" to={!isLoading && '/auths/register'}>
           Đăng ký ngay
         </Link>
       </div>

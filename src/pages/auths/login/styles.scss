@@ -1,0 +1,13 @@
+.auths-form {
+  .btn {
+    &--auth {
+      padding: 10px 0;
+    }
+    &--google {
+      &:hover {
+        background: #e74c3c;
+        color: var(--color-white);
+      }
+    }
+  }
+}

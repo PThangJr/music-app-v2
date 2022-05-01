@@ -1,37 +1,34 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import * as yup from "yup";
-import Button from "../../../components/Button";
-import InputField from "../../../components/Form/FormField/InputField";
-import { fetchRegister } from "../authSlice";
-import "./styles.scss";
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import Button from '../../../components/Button';
+import InputField from '../../../components/Form/FormField/InputField';
+import { fetchRegister } from '../authSlice';
+import './styles.scss';
 const schema = yup.object().shape({
   username: yup
     .string()
     .trim()
-    .required("Username không được để trống!")
-    .min(3, "Username ít nhất có 3 ký tự!")
-    .max(15, "Username không quá 12 ký tự")
-    .matches(
-      /^[a-zA-Z][a-zA-Z0-9]+\S$/i,
-      "Username không có ký tự đặc biệt, khoảng trắng"
-    ),
+    .required('Username không được để trống!')
+    .min(3, 'Username ít nhất có 3 ký tự!')
+    .max(15, 'Username không quá 12 ký tự')
+    .matches(/^[a-zA-Z][a-zA-Z0-9]+\S$/i, 'Username không có ký tự đặc biệt, khoảng trắng'),
 
-  email: yup.string().trim().required("Email không được để trống!"),
+  email: yup.string().trim().required('Email không được để trống!'),
   password: yup
     .string()
     .trim()
-    .required("Mật khẩu không được để trống!")
-    .min(6, "Mật khẩu ít nhất có 6 ký tự!")
-    .max(12, "Password không quá 12 ký tự"),
+    .required('Mật khẩu không được để trống!')
+    .min(6, 'Mật khẩu ít nhất có 6 ký tự!')
+    .max(12, 'Password không quá 12 ký tự'),
   cf_password: yup
     .string()
     .trim()
-    .required("Xác nhận mật khẩu không được để trống!")
-    .oneOf([yup.ref("password")], "Xác nhận mật khẩu không trùng khớp!"),
+    .required('Xác nhận mật khẩu không được để trống!')
+    .oneOf([yup.ref('password')], 'Xác nhận mật khẩu không trùng khớp!'),
 });
 
 const RegisterPage = () => {
@@ -40,18 +37,16 @@ const RegisterPage = () => {
   // React hook form for Validate value
   const form = useForm({
     defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-      cf_password: "",
+      username: '',
+      email: '',
+      password: '',
+      cf_password: '',
       rules: false,
     },
     resolver: yupResolver(schema),
   });
   const { register, formState, handleSubmit } = form;
-  const { isAuthenticate, errors, message } = useSelector(
-    (state) => state.auths
-  );
+  const { isAuthenticate, errors, message } = useSelector((state) => state.auths);
 
   useEffect(() => {
     if (isAuthenticate) {
@@ -77,7 +72,7 @@ const RegisterPage = () => {
         id="username"
         label="Nhập Username:"
         fullWidth
-        register={register("username")}
+        register={register('username')}
         error={errorMessages.username}
       />
       <InputField
@@ -86,7 +81,7 @@ const RegisterPage = () => {
         id="email"
         label="Nhập Email:"
         fullWidth
-        register={register("email")}
+        register={register('email')}
         error={errorMessages.email}
       />
       <InputField
@@ -95,7 +90,7 @@ const RegisterPage = () => {
         id="password"
         label="Nhập mật khẩu:"
         fullWidth
-        register={register("password")}
+        register={register('password')}
         error={errorMessages.password}
 
         // error="Mật khẩu không đúng"
@@ -106,12 +101,12 @@ const RegisterPage = () => {
         id="cf_password"
         label="Xác nhận mật khẩu:"
         fullWidth
-        register={register("cf_password")}
+        register={register('cf_password')}
         error={errorMessages.cf_password}
 
         // error="Mật khẩu không đúng"
       />
-      <Button className="btn--orange" fullWidth>
+      <Button className="btn--orange btn--auth" fullWidth>
         {/* <LoadingDotCircle /> */}
         Đăng nhập
       </Button>
