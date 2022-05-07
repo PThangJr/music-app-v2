@@ -90,7 +90,7 @@ const LoginPage = () => {
         {isLoading && <LoadingDotCircle />}
         Đăng nhập
       </Button>
-      <Google />
+      {/* <Google /> */}
 
       <div className="auths-form-note">
         (*) Nếu bạn chưa có tài khoản ?
