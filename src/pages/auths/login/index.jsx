@@ -8,6 +8,7 @@ import Button from '../../../components/Button';
 import InputField from '../../../components/Form/FormField/InputField';
 import LoadingDotCircle from '../../../components/Loading/LoadingDotCircle';
 import { fetchLogin } from '../authSlice';
+import Google from './Google';
 import './styles.scss';
 const LoginPage = () => {
   const schema = yup.object().shape({
@@ -89,10 +90,8 @@ const LoginPage = () => {
         {isLoading && <LoadingDotCircle />}
         Đăng nhập
       </Button>
-      <Button className="btn--auth btn--google" fullWidth>
-        <i className="fa-brands fa-google"></i>
-        Đăng nhập bằng Google
-      </Button>
+      <Google />
+
       <div className="auths-form-note">
         (*) Nếu bạn chưa có tài khoản ?
         <Link className="auths-form-note__link" to={!isLoading && '/auths/register'}>
