@@ -114,6 +114,7 @@ const PlayerControl = ({ volume }) => {
   };
   const handleRepeatSong = () => {
     dispatch(setIsRepeat(!isRepeat));
+
   };
   // Handle audio
   const handleTimeUpdate = (e) => {
@@ -126,11 +127,13 @@ const PlayerControl = ({ volume }) => {
   };
   const handleEndedData = () => {
     if (isRepeat) {
-      audioRef.current.loop = true;
+      // audioRef.current.loop = true;
+      setCurrentTime(0);
       if (timeListen >= TIME_LISTEN_TO_UP_VIEWS) {
         dispatch(setTimeListen(0));
       }
     } else {
+      // audioRef.current.loop = false;
       dispatch(setTimeListen(0));
       if (
         (songListNext.length > 0 && currentSong._id !== songListNext[songListNext.length - 1]._id) ||
