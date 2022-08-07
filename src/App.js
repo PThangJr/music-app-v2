@@ -1,4 +1,6 @@
 import React from 'react';
+import { useMemo } from 'react';
+import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -41,95 +43,115 @@ const App = () => {
   //***********Get data from store*****************
   const displayPlaylist = useSelector((state) => state.displayPlaylist);
   const displayVideo = useSelector((state) => state.displayVideo);
+  const playlist = useSelector((state) => state.playlist);
   //***********Handle event**************
   const handleCloseVideo = () => {
     dispatch(setDisplayVideo(false));
     // dispatch(setIsPlayingVideo(false));
   };
+  const getSingerNames = useMemo(() => {
+    if (playlist.currentSong?.singers) {
+      return playlist.currentSong.singers.reduce((acc, cur, index) => {
+        if (index > 0) {
+          return `${acc} ft ${cur.name}`;
+        }
+        return `${acc}${cur.name}`;
+      }, '');
+    }
+  }, [playlist.currentSong?.singers]);
   //***********Render UI*****************
 
   return (
-    <div className="app">
-      <ScrollToTop />
-      <ToastContainer autoClose={2000} icon={false} />
-      <Header />
-      <div className="main" id="main">
-        <div className="container-md">
-          <Routes>
-            <Route path="/" element={<HomePage />}></Route>
+    <>
+      {/* Head */}
+      <Helmet>
+        <title>
+          {playlist.currentSong?.name ? `${playlist.currentSong.name} - ${getSingerNames}` : 'Music 4u - Music for you'}
+        </title>
+      </Helmet>
+      {/* Body  */}
+      <div className="app">
+        <ScrollToTop />
+        <ToastContainer autoClose={2000} icon={false} />
+        <Header />
+        <div className="main" id="main">
+          <div className="container-md">
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
 
-            <Route path="/auths">
-              <Route
-                index
-                element={
-                  <AuthsPage>
-                    <LoginPage />
-                  </AuthsPage>
-                }
-              ></Route>
-              <Route
-                path="login"
-                element={
-                  <AuthsPage>
-                    <LoginPage />
-                  </AuthsPage>
-                }
-              ></Route>
-              <Route
-                path="register"
-                element={
-                  <AuthsPage>
-                    <RegisterPage />
-                  </AuthsPage>
-                }
-              ></Route>
-            </Route>
+              <Route path="/auths">
+                <Route
+                  index
+                  element={
+                    <AuthsPage>
+                      <LoginPage />
+                    </AuthsPage>
+                  }
+                ></Route>
+                <Route
+                  path="login"
+                  element={
+                    <AuthsPage>
+                      <LoginPage />
+                    </AuthsPage>
+                  }
+                ></Route>
+                <Route
+                  path="register"
+                  element={
+                    <AuthsPage>
+                      <RegisterPage />
+                    </AuthsPage>
+                  }
+                ></Route>
+              </Route>
 
-            <Route path="/bai-hat">
-              <Route index element={<SongsPage />} />
-              <Route path=":slug" element={<SongDetailPage />} />
-            </Route>
-            <Route path="/bang-xep-hang" element={<RankPage />}></Route>
+              <Route path="/bai-hat">
+                <Route index element={<SongsPage />} />
+                <Route path=":slug" element={<SongDetailPage />} />
+              </Route>
+              <Route path="/bang-xep-hang" element={<RankPage />}></Route>
 
-            <Route path="/ca-si">
-              <Route index element={<SingersPage />}></Route>
-              <Route path=":slug" element={<SingerDetail />}></Route>
-            </Route>
-            <Route path="/albums">
-              <Route index element={<AlbumsPage />} />
-              <Route path=":slug" element={<AlbumDetailPage />}></Route>
-              <Route path="album_groups/:slug" element={<AlbumGroupsPage />} />
-            </Route>
-            <Route path="/the-loai">
-              <Route index element={<CategoriesPage />} />
-              <Route path=":slug" element={<CategoryDetail />}></Route>
-            </Route>
-            <Route path="/favorites" element={<FavoritesPage />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/refresh" element={<RefreshPage />} />
-          </Routes>
+              <Route path="/ca-si">
+                <Route index element={<SingersPage />}></Route>
+                <Route path=":slug" element={<SingerDetail />}></Route>
+              </Route>
+              <Route path="/albums">
+                <Route index element={<AlbumsPage />} />
+                <Route path=":slug" element={<AlbumDetailPage />}></Route>
+                <Route path="album_groups/:slug" element={<AlbumGroupsPage />} />
+              </Route>
+              <Route path="/the-loai">
+                <Route index element={<CategoriesPage />} />
+                <Route path=":slug" element={<CategoryDetail />}></Route>
+              </Route>
+              <Route path="/favorites" element={<FavoritesPage />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/refresh" element={<RefreshPage />} />
+            </Routes>
+          </div>
+          {/* {currentSong.videoId && <YouTube videoId={currentSong.videoId} />} */}
+          <Player />
+
+          <ModalSidebar
+            direction="right-to-left"
+            isOpen={displayPlaylist}
+            onClose={() => dispatch(setDisplayPlaylist(false))}
+            className="sidebar-playlist"
+          >
+            <Playlist />
+          </ModalSidebar>
+          <ModalSidebar
+            direction="bottom-to-top"
+            isOpen={displayVideo}
+            onClose={handleCloseVideo}
+            className="modal-sidebar--video"
+          >
+            <Video />
+          </ModalSidebar>
         </div>
-        {/* {currentSong.videoId && <YouTube videoId={currentSong.videoId} />} */}
-        <Player />
-
-        <ModalSidebar
-          direction="right-to-left"
-          isOpen={displayPlaylist}
-          onClose={() => dispatch(setDisplayPlaylist(false))}
-          className="sidebar-playlist"
-        >
-          <Playlist />
-        </ModalSidebar>
-        <ModalSidebar
-          direction="bottom-to-top"
-          isOpen={displayVideo}
-          onClose={handleCloseVideo}
-          className="modal-sidebar--video"
-        >
-          <Video />
-        </ModalSidebar>
       </div>
-    </div>
+    </>
   );
 };
 
