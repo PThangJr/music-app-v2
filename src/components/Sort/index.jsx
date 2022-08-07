@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './styles.scss';
 
 const Sort = () => {
   const navigate = useNavigate();
@@ -15,19 +16,19 @@ const Sort = () => {
         ----Sắp xếp----
       </option>
       <option value={`?sort=-createdAt`} type="text" className="select-field">
-        - Bài hát mới
+        1. Bài hát mới
       </option>
       <option value={`?sort=slug`} type="text" className="select-field">
-        - Tên từ A-Z
+        2. Tên từ A-Z
       </option>
       <option value={`?sort=-slug`} type="text" className="select-field">
-        - Tên từ Z-A
+        3. Tên từ Z-A
       </option>
       <option value={`?sort=views`} type="text" className="select-field">
-        - Views tăng dần
+        4. Views tăng dần
       </option>
       <option value={`?sort=-views`} type="text" className="select-field">
-        - Views giảm dần
+        5. Views giảm dần
       </option>
     </select>
   );

@@ -39,7 +39,6 @@ const AlbumsPage = () => {
               totalItems: 6,
             }}
             albums={albumsOfAlbumGroups.data.find((abg) => Object.keys(abg)[0] === albumGroup.name)?.[albumGroup.name]}
-            col={{ xl: 2 }}
           />
         );
       })}
