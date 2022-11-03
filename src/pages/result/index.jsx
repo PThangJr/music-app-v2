@@ -26,7 +26,7 @@ const SearchPage = () => {
   }, [dispatch, queryParams.search]);
   //***********Get data from store*****************
   const singers = useSelector((state) => state.singers);
-  console.log(singers);
+  // console.log(singers);
   //***********Handle event**************
 
   //***********Calculation**************

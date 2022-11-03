@@ -32,7 +32,7 @@ const songsAPI = {
   updateSong(payload) {
     const songId = payload?.songId || '';
     const data = payload?.data || {};
-    console.log(`payload`, payload);
+    // console.log(`payload`, payload);
     const url = `/songs/${songId}`;
     return axiosClient.put(url, data);
   },

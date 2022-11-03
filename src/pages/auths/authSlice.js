@@ -86,7 +86,7 @@ const authSlice = createSlice({
     },
     [fetchRegister.rejected](state, action) {
       state.isLoading = false;
-      console.log(action.payload);
+      // console.log(action.payload);
       state.errors = action.payload.data.errors;
     },
   },

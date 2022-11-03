@@ -64,7 +64,7 @@ const songSlice = createSlice({
     },
     [fetchUpdateSong.fulfilled](state, action) {
       state.isLoading = false;
-      console.log(action.payload);
+      // console.log(action.payload);
     },
     [fetchUpdateSong.rejected](state, action) {
       state.isLoading = false;

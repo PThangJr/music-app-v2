@@ -32,7 +32,6 @@ const HomePage = () => {
   const songsNew = useSongs({ params: { limit: 15, sort: '-createdAt' } });
   const categories = useCategories({ params: { limit: 12, sort: 'slug' } });
   const playlist = useSelector((state) => state.playlist);
-  console.log(playlist);
   const singers = useSingers({
     params: { limit: 12, page: pageRandom, sort: '-createdAt' },
   });
