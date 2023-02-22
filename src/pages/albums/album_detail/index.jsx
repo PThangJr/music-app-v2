@@ -9,7 +9,7 @@ const AlbumDetail = () => {
   const { slug } = useParams();
   const songs = useSongs({
     subUrl: `/album/${slug}`,
-    params: { limit: 15 },
+    params: { limit: 40 },
   });
 
   const randomPage = useMemo(() => {
