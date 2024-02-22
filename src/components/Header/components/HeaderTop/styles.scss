@@ -18,10 +18,10 @@
         display: none;
       }
       &__img {
-        width: 80px;
-        height: 55px;
         display: block;
         object-fit: fill;
+        width: 60px;
+        padding: 0 8px;
       }
     }
     .mb-menu {
