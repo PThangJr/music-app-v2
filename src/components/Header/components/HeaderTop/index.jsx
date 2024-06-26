@@ -97,7 +97,7 @@ const HeaderTop = () => {
           <LazyLoadImage
             className="logo__img"
             alt="logo"
-            src="https://res.cloudinary.com/dbfyyqmwr/image/upload/v1708568107/logo_jnldst.png"
+            src="https://res.cloudinary.com/dbfyyqmwr/image/upload/v1719384729/logo-music_goipxz.jpg"
           />
         </a>
         <div className="mb-icon mb-menu" onClick={handleShowSidebar}>
